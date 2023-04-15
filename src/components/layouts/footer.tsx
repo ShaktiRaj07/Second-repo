@@ -48,7 +48,7 @@ const Footer = (props: any) => {
 
 					<div className="store-locator">
 					<div className="company-logo mr-4">
-							<img src={footer.c_matalan_footer_logo.url} alt="logo"/>
+							{/* <img src={footer.c_matalan_footer_logo.url} alt="logo"/> */}
 							</div>
 						{footer.c_store_finder.map((storfinder: any) => {
 							console.log(storfinder)

@@ -1,6 +1,7 @@
 import * as React from "react";
 import Footer from "./footer";
 import Nav from "./Nav";
+import Header from "./header";
 
 type Props = {
     title?: string;
@@ -17,9 +18,9 @@ type Props = {
   }: Props) => {
     return (
         <>
-      
+      <Header/>
                 {children}
-      
+      {/* <Footer/> */}
         </>
     );
   };
