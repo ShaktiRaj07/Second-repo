@@ -39,7 +39,7 @@ import OpenClose from "../components/commons/openClose";
 import Faq from "../components/locationDetail/Faqs";
 import { StaticData } from "../../sites-global/staticData";
 
-import {apikey_for_entity, baseuRL,stagingBaseurl,AnalyticsEnableDebugging,AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
+import { apikey_for_entity, baseuRL, stagingBaseurl, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
 import {
   AnalyticsProvider,
   AnalyticsScopeProvider,
@@ -71,11 +71,12 @@ export const config: TemplateConfig = {
       "yextDisplayCoordinate",
       "displayCoordinate",
       "cityCoordinate",
-      "c_my_field"
+      "c_my_field",
+      "c_geniousGallery",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
-     entityTypes:['location']
+      entityTypes: ['location']
 
     },
     // The entity language profiles that documents will be generated for.
@@ -132,7 +133,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   document,
 }): HeadConfig => {
   return {
-    title: document.c_meta_title?document.c_meta_title:`${document.name} Store of MGM Timber`,
+    title: document.c_meta_title ? document.c_meta_title : `${document.name} Store of MGM Timber`,
     charset: "UTF-8",
     viewport: "width=device-width, initial-scale=1",
     tags: [
@@ -140,11 +141,11 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "description",
-          content: `${document.c_meta_description?document.c_meta_description:`Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`}`,
+          content: `${document.c_meta_description ? document.c_meta_description : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`}`,
         },
       },
 
-     
+
       {
         type: "meta",
         attributes: {
@@ -165,9 +166,9 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "link",
         attributes: {
           rel: "canonical",
-          href: `${document._site?.c_canonical?document?.c_canonical:stagingBaseurl
+          href: `${document._site?.c_canonical ? document?.c_canonical : stagingBaseurl
 
-            }${document.slug?document.slug:`${document.name.toLowerCase()}`}.html`,
+            }${document.slug ? document.slug : `${document.name.toLowerCase()}`}.html`,
         },
       },
 
@@ -175,7 +176,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           property: "og:description",
-          content: `${document.c_meta_description?document.c_meta_description:`Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`}`,
+          content: `${document.c_meta_description ? document.c_meta_description : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`}`,
         },
       },
       {
@@ -210,14 +211,14 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "twitter:title",
-          content: document.c_meta_title?document.c_meta_title:`${document.name} Store of MGM Timber`,
+          content: document.c_meta_title ? document.c_meta_title : `${document.name} Store of MGM Timber`,
         },
       },
       {
         type: "meta",
         attributes: {
           name: "twitter:description",
-          content: `${document.c_meta_description?document.c_meta_description:`Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`}`,
+          content: `${document.c_meta_description ? document.c_meta_description : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`}`,
         },
       },
       /// twitter tag
@@ -238,8 +239,8 @@ export const transformProps: TransformProps<ExternalApiData> = async (
 
   var location = `${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.latitude : data.document.displayCoordinate.latitude},${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.longitude : data.document.displayCoordinate.longitude}`;
 
-    const url = `${AnswerExperienceConfig.endpoints.verticalSearch}?experienceKey=${AnswerExperienceConfig.experienceKey}&api_key=${AnswerExperienceConfig.apiKey}&v=20220511&version=${AnswerExperienceConfig.experienceVersion}&locale=${AnswerExperienceConfig.locale}&location=${location}&verticalKey=${AnswerExperienceConfig.verticalKey}&limit=4&retrieveFacets=true&skipSpellCheck=false&sessionTrackingEnabled=true&source=STANDARD`;
- console.log(url)
+  const url = `${AnswerExperienceConfig.endpoints.verticalSearch}?experienceKey=${AnswerExperienceConfig.experienceKey}&api_key=${AnswerExperienceConfig.apiKey}&v=20220511&version=${AnswerExperienceConfig.experienceVersion}&locale=${AnswerExperienceConfig.locale}&location=${location}&verticalKey=${AnswerExperienceConfig.verticalKey}&limit=4&retrieveFacets=true&skipSpellCheck=false&sessionTrackingEnabled=true&source=STANDARD`;
+  console.log(url)
   const externalApiData = (await fetch(url).then((res: any) =>
     res.json()
 
@@ -276,10 +277,11 @@ const Location: Template<ExternalApiRenderData> = ({
     displayCoordinate,
     cityCoordinate,
     name,
-    c_my_field
+    c_my_field,
+    c_geniousGallery,
   } = document;
 
- let templateData = { document: document, __meta: __meta };
+  let templateData = { document: document, __meta: __meta };
   let hoursSchema = [];
   let breadcrumbScheme = [];
   for (var key in hours) {
@@ -317,83 +319,83 @@ const Location: Template<ExternalApiRenderData> = ({
     }
   }
   document.dm_directoryParents &&
-  document.dm_directoryParents.map((i: any, index: any) => {
-    if (i.meta.entityType.id == "ce_country") {
-      document.dm_directoryParents[index].name =
-        document.dm_directoryParents[index].name;
-      document.dm_directoryParents[index].slug =
-        document.dm_directoryParents[index].slug;
+    document.dm_directoryParents.map((i: any, index: any) => {
+      if (i.meta.entityType.id == "ce_country") {
+        document.dm_directoryParents[index].name =
+          document.dm_directoryParents[index].name;
+        document.dm_directoryParents[index].slug =
+          document.dm_directoryParents[index].slug;
 
-      breadcrumbScheme.push({
-        "@type": "ListItem",
-        position: index,
-        item: {
-          "@id":
-            stagingBaseurl +
-       
-            document.dm_directoryParents[index].slug +
-            ".html",
-          name: i.name,
-        },
-      });
-    } else if (i.meta.entityType.id == "ce_region") {
-      let url = "";
-      document.dm_directoryParents.map((j: any) => {
-        if (
-          j.meta.entityType.id != "ce_region" &&
-          j.meta.entityType.id != "ce_city" &&
-          j.meta.entityType.id != "ce_root"
-        ) {
-          console.log(j, "j");
-          url = url  + j.slug;
-        }
-      });
-      breadcrumbScheme.push({
-        "@type": "ListItem",
-        position: index,
-        item: {
-          "@id":
-            stagingBaseurl +
-            url + "/" +
-            document.dm_directoryParents[index].slug +
-            ".html",
-          name: i.name,
-        },
-      });
-    } else if (i.meta.entityType.id == "ce_city") {
-      let url = "";
-      document.dm_directoryParents.map((j: any) => {
-        if (
-          j.meta.entityType.id != "ce_city" &&
-          j.meta.entityType.id != "ce_root"
-        ) {
-          console.log(j, "j");
-          url = url  + "/" + j.slug;
-        }
-      });
-      breadcrumbScheme.push({
-        "@type": "ListItem",
-        position: index,
-        item: {
-          "@id":
-            stagingBaseurl +
-            url +"/" +
-            document.dm_directoryParents[index].slug +
-            ".html",
-          name: i.name,
-        },
-      });
-    }
+        breadcrumbScheme.push({
+          "@type": "ListItem",
+          position: index,
+          item: {
+            "@id":
+              stagingBaseurl +
+
+              document.dm_directoryParents[index].slug +
+              ".html",
+            name: i.name,
+          },
+        });
+      } else if (i.meta.entityType.id == "ce_region") {
+        let url = "";
+        document.dm_directoryParents.map((j: any) => {
+          if (
+            j.meta.entityType.id != "ce_region" &&
+            j.meta.entityType.id != "ce_city" &&
+            j.meta.entityType.id != "ce_root"
+          ) {
+            console.log(j, "j");
+            url = url + j.slug;
+          }
+        });
+        breadcrumbScheme.push({
+          "@type": "ListItem",
+          position: index,
+          item: {
+            "@id":
+              stagingBaseurl +
+              url + "/" +
+              document.dm_directoryParents[index].slug +
+              ".html",
+            name: i.name,
+          },
+        });
+      } else if (i.meta.entityType.id == "ce_city") {
+        let url = "";
+        document.dm_directoryParents.map((j: any) => {
+          if (
+            j.meta.entityType.id != "ce_city" &&
+            j.meta.entityType.id != "ce_root"
+          ) {
+            console.log(j, "j");
+            url = url + "/" + j.slug;
+          }
+        });
+        breadcrumbScheme.push({
+          "@type": "ListItem",
+          position: index,
+          item: {
+            "@id":
+              stagingBaseurl +
+              url + "/" +
+              document.dm_directoryParents[index].slug +
+              ".html",
+            name: i.name,
+          },
+        });
+      }
+    });
+
+  breadcrumbScheme.push({
+    "@type": "ListItem",
+    position: 4,
+    item: {
+      "@id": stagingBaseurl + path,
+      name: document.name,
+    },
   });
-
-breadcrumbScheme.push({
-  "@type": "ListItem",
-  position: 4,
-  item: {
-    "@id": stagingBaseurl + path,
-    name: document.name,
-  },
-});
   let imageurl = photoGallery ? photoGallery.map((element: any) => {
     return element.image.url
   }) : null;
@@ -421,7 +423,7 @@ breadcrumbScheme.push({
           description: description,
           image: imageurl,
           telephone: mainPhone,
-          url: `${c_canonical?c_canonical:stagingBaseurl}${slug?slug:`${name}`}.html`
+          url: `${c_canonical ? c_canonical : stagingBaseurl}${slug ? slug : `${name}`}.html`
         }}
       />
       <JsonLd<BreadcrumbList>
@@ -432,7 +434,7 @@ breadcrumbScheme.push({
           itemListElement: breadcrumbScheme,
         }}
       />
-    
+
       <AnalyticsProvider
         templateData={templateData}
         enableDebugging={AnalyticsEnableDebugging}
@@ -440,49 +442,99 @@ breadcrumbScheme.push({
       >
         {" "}
         <AnalyticsScopeProvider name={""}>
-      <PageLayout global={_site}>
+          <PageLayout _site={_site}>
 
 
-      <div className="container">
-            <div className='banner-text banner-dark-bg justify-center text-center'>
-              <h1 className="">{name}</h1>
+            <div className="container">
+              <div className='banner-text banner-dark-bg justify-center text-center'>
+                <h1 className="">{name}
+                </h1>
                 <div className="openClosestatus detail-page closeing-div">
                   <OpenClose timezone={timezone} hours={hours} />
-                </div> 
-            </div>
-          </div>
-          <div className="location-information">
-        <Contact address={address} 
-           phone={mainPhone} latitude={yextDisplayCoordinate ? yextDisplayCoordinate.latitude : displayCoordinate?.latitude}
-           yextDisplayCoordinate={yextDisplayCoordinate} longitude={yextDisplayCoordinate ? yextDisplayCoordinate.longitude : displayCoordinate?.longitude} hours={hours}  additionalHoursText={additionalHoursText} ></Contact>
-          {
-            hours ?
-              <div className="map-sec" id="map_canvas">
-                <CustomMap prop={yextDisplayCoordinate ? yextDisplayCoordinate : displayCoordinate} />
-              </div> :
-              <div className="map-sec without-hours" id="map_canvas">
-                <CustomMap prop={yextDisplayCoordinate ? yextDisplayCoordinate : displayCoordinate} />
+                </div>
               </div>
-          }
-        </div>
+            </div>
+            <div className="location-information">
+              <Contact address={address}
+                phone={mainPhone} latitude={yextDisplayCoordinate ? yextDisplayCoordinate.latitude : displayCoordinate?.latitude}
+                yextDisplayCoordinate={yextDisplayCoordinate} longitude={yextDisplayCoordinate ? yextDisplayCoordinate.longitude : displayCoordinate?.longitude} hours={hours} additionalHoursText={additionalHoursText} ></Contact>
+              {
+                hours ?
+                  <div className="map-sec" id="map_canvas">
+                    <CustomMap prop={yextDisplayCoordinate ? yextDisplayCoordinate : displayCoordinate} />
+                  </div> :
+                  <div className="map-sec without-hours" id="map_canvas">
+                    <CustomMap prop={yextDisplayCoordinate ? yextDisplayCoordinate : displayCoordinate} />
+                  </div>
+              }
+            </div>
             {/* Create new section  */}
 
-            <About props={c_my_field}/>
+            <About props={c_my_field} />
+            <div className="containerr">
+              <h1 className="head">Our Gallery</h1>
+              {c_geniousGallery?.images.map((item: any) => {
 
-        <div className="nearby-sec">
-          <div className="container">
-            <div className="sec-title"><h2 className="">{StaticData.NearStoretext}</h2></div>
-            <div className="nearby-sec-inner">
-              {yextDisplayCoordinate || cityCoordinate || displayCoordinate ?
-                <Nearby externalApiData={externalApiData} /> 
-             : ''}
+                return (
+                  <>
+                    <div className="effect11">
+                      <img src={item.url} className="grid-item" alt="images" />
+                    </div>
+                  </>
+
+                );
+
+              })}
             </div>
-          </div>
 
-        </div>
+            {/* new section start */}
+            <div className="heading1">Our Owner's</div>
+            <div className="Section5">
+            <div className="box">
+              <div className="card">
+                <div className="imgBx">
+                  <img src="https://1.bp.blogspot.com/-ZJx9AmmzfTY/YM5FZG0CkZI/AAAAAAAAAyg/Gxq7fMYY4Hcgt2U-u-cRLlxVVuT83WZXgCLcBGAsYHQ/s2048/IMG_1942%2Bcopy.jpg" alt="images"/>
+                </div>
+                <div className="details">
+                  <h2>Anubhav Dubey<br/><span>Owner</span></h2>
+                </div>
+              </div>
 
-      </PageLayout>
-      </AnalyticsScopeProvider>
+              <div className="card">
+                <div className="imgBx">
+                  <img src="https://akm-img-a-in.tosshub.com/businesstoday/images/story/202209/fbeyuh9veaa1yqk_1-sixteen_nine.jpg?size=948:533" alt="images"/>
+                </div>
+                <div className="details">
+                  <h2>Abhinav, Anand<br/><span>CEO & Founder</span></h2>
+                </div>
+              </div>
+
+              <div className="card">
+                <div className="imgBx">
+                  <img src="https://www.chaisuttabarindia.com/wp-content/uploads/2022/12/Manoj-More-Chai-Sutta-Bar.jpg" alt="images"/>
+                </div>
+                <div className="details">
+                  <h2>Anand Nayak<br/><span>Co-Founder</span></h2>
+                </div>
+              </div>
+              </div>
+            </div>
+
+
+            <div className="nearby-sec">
+              <div className="container">
+                <div className="sec-title"><h2 className="">{StaticData.NearStoretext}</h2></div>
+                <div className="nearby-sec-inner">
+                  {yextDisplayCoordinate || cityCoordinate || displayCoordinate ?
+                    <Nearby externalApiData={externalApiData} />
+                    : ''}
+                </div>
+              </div>
+
+            </div>
+
+          </PageLayout>
+        </AnalyticsScopeProvider>
       </AnalyticsProvider>
     </>
   );

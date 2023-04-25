@@ -18,9 +18,10 @@ type Props = {
   }: Props) => {
     return (
         <>
-      <Header/>
+      <Header _site={_site}/>
+
                 {children}
-      {/* <Footer/> */}
+      <Footer />
         </>
     );
   };

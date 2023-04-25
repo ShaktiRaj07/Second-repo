@@ -12,6 +12,8 @@ const Mystore = (props: any) => {
                 <img src={props.props.image.url} alt="acd" />
                 <button>{props.props.cTA.label}</button>
             </div>
+
+
         </>
     )
 }

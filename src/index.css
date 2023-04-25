@@ -402,7 +402,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 /* services sec */
 .services-sec{@apply bg-white w-full pt-8 pb-16 md:py-9 }
 .sec-title{@apply mb-4 md:mb-7}
-.sec-title h2, .sec-title h1{@apply text-center text-2xl font-second-main-font md:text-[1.75rem] text-red  }
+.sec-title h2, .sec-title h1{@apply text-center text-2xl font-second-main-font md:text-[1.75rem] text-red }
 .sec-title h1{@apply mb-5}
 .services-inner{@apply flex flex-wrap  }
 .services-inner .service-icon{@apply  m-0 }
@@ -638,4 +638,242 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
   .storelocation-openCloseTime table.day-hrs .currentDay .dayName .checked{@apply left-1}
 }
 
+
+/* .grid-container {
+  display: grid;
+  column-gap: 40px;
+  grid-template-columns: auto auto auto auto;
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+} */
+@media (min-width: 1280px){
+.about-sec .about-content {
+    width: 50.6%;
+    padding-top: 0rem;
+}}
+
+.containerr {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  background-color: rgb(248 248 248 / var(--tw-bg-opacity));
+  --tw-bg-opacity: 1;
+  padding: 60px;
+}
+
+/********************** Effect 11 *************************/
+.effect11 {
+  float: left;
+  display: inline-block;
+  width: 100%;
+  max-width: 307px;
+  /* margin-right: 1.5%; */
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 12px;
+}
+.effect11 img {
+  transform: scale(1);
+  
+  transition: 0.9s ease all;
+}
+.effect11:hover a {
+  background: rgba(0,0,0,0.2);
+  visibility: visible;
+  left: 0;
+  height: 20%;
+  padding: 40.1% 0; 
+  opacity: 1;
+  bottom: 3px;
+  transform: scale(1);
+  text-shadow: 
+    -0   -1px 1px #000000,
+     0   -1px 1px #000000,
+    -0    1px 1px #000000,
+     0    1px 1px #000000,
+    -1px -0   1px #000000,
+     1px -0   1px #000000,
+    -1px  0   1px #000000,
+     1px  0   1px #000000,
+    -1px -1px 1px #000000,
+     1px -1px 1px #000000,
+    -1px  1px 1px #000000,
+     1px  1px 1px #000000,
+    -1px -1px 1px #000000,
+     1px -1px 1px #000000,
+    -1px  1px 1px #000000,
+     1px  1px 1px #000000;
+}
+.effect11:hover img {
+  transform: scale(1.5);
+}
+
+.head{
+  margin-bottom: 1.85rem;
+  margin-top: 2rem;
+  font-size: 2rem;
+  --tw-text-opacity: 1;
+  background-image: linear-gradient(135deg, #9f05ff69 10%, #fd5e086b 100%);
+  color: #000000;
+  font-family: cursive;
+  padding: 0rem;
+  text-align: center;
+}
+.nearby-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.nearby-card {
+  border-radius: 5px;
+  /* box-shadow: 0px 30px 40px -20px hsl(229, 6%, 66%); */
+  padding: 30px;
+  border-top: 3px solid hsl(0, 78%, 62%);
+}
+
+.address.notHighlight {
+  color: hsl(229, 6%, 66%);
+}
+ 
+.nearby-card h2 a {
+  font-size: 1.50rem !important;
+}
+
+.sec-title h2, .sec-title h1 {
+  text-align: center;
+  line-height: 2rem;
+  --tw-text-opacity: 1;
+  color: #000000;
+  font-family: cursive;
+  margin-bottom: 0.75rem;
+  margin-top: 2rem;
+  font-size: 2rem;
+  background-image: linear-gradient(135deg, #9f05ff69 10%, #fd5e086b 100%);
+  padding: 0.2rem;
+}
+
+/* newsection css */
+
+.Section5{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  min-height: 96vh;
+  background: #212121;
+  font-family: sans-serif;
+  width: 92%;
+  margin-left: 4rem;
+  border-radius: 0.55rem;
+}
+.box{
+  width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 15px;
+  margin: 0 auto;
+}
+.card{
+  position: relative;
+  width: 300px;
+  height: 350px;
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow:0 2px 10px rgba(0,0,0,.2);
+}
+.card:before,
+.card:after
+{
+  content:"";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  background: #fff;
+  transition: 0.5s;
+  z-index:-1;
+}
+.card:hover:before{
+transform: rotate(20deg);
+box-shadow: 0 2px 20px rgba(0,0,0,.2);
+}
+.card:hover:after{
+transform: rotate(10deg);
+box-shadow: 0 2px 20px rgba(0,0,0,.2);
+}
+.card .imgBx{
+position: absolute;
+top: 10px;
+left: 10px;
+bottom: 10px;
+right: 10px;
+background: #222;
+transition: 0.5s;
+z-index: 1;
+}
+
+.card:hover .imgBx
+{
+  bottom: 80px;
+}
+
+.card .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card .details{
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    height: 60px;
+    text-align: center;
+}
+
+.card .details h2{
+ margin: 0;
+ padding: 0;
+ font-weight: 600;
+ font-size: 20px;
+ color: #777;
+ text-transform: uppercase;
+} 
+
+.card .details h2 span{
+font-weight: 500;
+font-size: 16px;
+color: #f38695;
+display: block;
+margin-top: 5px;
+ } 
+
+ .heading1{
+  margin-bottom: 2.85rem;
+  margin-top: 2rem;
+  font-family: "futura_ptdemi", Georgia, Arial, sans-serif;
+  font-size: 2rem;
+  --tw-text-opacity: 1;
+  background-image: linear-gradient(135deg, #9f05ff69 10%, #fd5e086b 100%);
+  color: #000000;
+  font-family: cursive;
+  padding: 0.4rem;
+  text-align: center;
+  width: 93%;
+  margin-left: 3.5rem;
+ }
 

@@ -1,52 +1,35 @@
 import * as React from "react";
-import Cta from "../commons/cta";
+import "./header.css";
 
-  type Link = {
-    label: string;
-    url: string;
-  };
+type Link = {
+  label: string;
+  url: string;
+};
 
-  const links: Link[] = [
-    {
-      label: "Home",
-      url: "/",
-    },
-    {
-      label: "About",
-      url: "/about",
-    },
-    {
-      label: "Menu",
-      url: "/menu.html",
-    },
-    {
-      label: "Locator",
-      url: "/locator",
-    }
-  ];
 
-  const Header = () => {
-    const linkDoms = links.map((link) => (
-      <div key={link.label}>
-        <a href={link.url} >
-          {link.label}
-        </a>
-      </div>
-    ));
+const Header = (props: any) => {
+  const linkDoms = props._site.c_menufield?.map((link: any) => (
+    <div key={link.label}>
+      <a href="#">
+        {link.label}
+      </a>
+    </div>
+  ));
 
   return (
     <>
-      <div className="centered-container">
-        <nav className="py-3 flex items-center justify-between">
-          <img
-              src="https://a.mktgcdn.com/p/8esDUBrhKJnkaVztLihLsC3quv_5BjLFG9L6MJ0adcs/150x150.png"/>
-            <div className="flex gap-x-10 text-lg font-semibold">{linkDoms}</div>
-          <div className="hidden space-x-5 sm:block">
-            <Cta buttonText="Order Pickup" url="#" style="primary-cta"></Cta>
-            <Cta buttonText="Order Delivery" url="#" style="secondary-cta"></Cta>
-          </div>
-        </nav>
-      </div>
+      <header>
+        <div className="overlay">
+        <img
+            src="https://a.mktgcdn.com/p-sandbox/NbRSu6nMaZjEnZx6GoJoXlrardl1cAAFMCjiKtfS52g/1844x1642.png"  className="imglogo"/>
+          <nav className="nav-2">
+            <span className="navmanage">{linkDoms}</span>
+          </nav>
+          <h1 className="headingmain">Simply The Best</h1>
+          <br />
+          <button>READ MORE</button>
+        </div>
+      </header>
     </>
   );
 };

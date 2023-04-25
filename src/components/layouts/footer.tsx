@@ -1,171 +1,67 @@
 import * as React from "react";
-import "../../index.css";
-import logofooter from "../../images/logo-footer.svg";
-import facebook from "../../images/facebook.svg";
-import instagram from "../../images/instagram.svg";
-import twitter from "../../images/twitter.svg";
-import youtube from "../../images/youtube.svg";
-import printest from "../../images/printest.svg";
-import { cookieText, cookiesUrl } from "../../../sites-global/global"
-import CookieConsent from "react-cookie-consent";
-import { StaticData } from "../../../sites-global/staticData";
-import { useEffect, useState } from "react";
-import Link from "../commons/Link";
+import "./footer.css";
 
 const Footer = (props: any) => {
-	const { footer } = props;
-	// const [isNavVisible, setNavVisibility] =  useState(false);
-	const [isSmallScreen, setIsSmallScreen] = useState(false);
-	console.log(footer)
-	useEffect(() => {
-		const mediaQuery = window.matchMedia("(max-width: 1024px)");
-		mediaQuery.addListener(handleMediaQueryChange);
-		handleMediaQueryChange(mediaQuery);
-
-		return () => {
-			mediaQuery.removeListener(handleMediaQueryChange);
-		};
-	}, []);
-
-	const handleMediaQueryChange = mediaQuery => {
-		if (mediaQuery.matches) {
-			setIsSmallScreen(true);
-		} else {
-			setIsSmallScreen(false);
-		}
-	};
-	// if (typeof window !== "undefined") {
-	// 	mediaQuery = window?.innerWidth;
-	// }
-
-
+	
 	return (
 		<>
-
 			<footer className="site-footer">
-
 				<div className="container">
-
-					<div className="store-locator">
-					<div className="company-logo mr-4">
-							{/* <img src={footer.c_matalan_footer_logo.url} alt="logo"/> */}
-							</div>
-						{footer.c_store_finder.map((storfinder: any) => {
-							console.log(storfinder)
-							return (
-								<>
-									<div className="store-inner">
-										<img src={storfinder.icon.url} alt="store-finder" />
-										<Link props={storfinder.cTA}/>
-
-									</div>
-								</>
-							)
-						})}
-
-
-						<div className="store-inner flex flex-raw">
-							<div>
-							<img src={footer.c_fAQs.icon.url} alt="faq-icon" />
-
-							<Link props={footer.c_fAQs.cTA} />
-							</div>
-							<div>
-
-							<img src={footer.c_getAQuate.icon.url} alt="faq-icon" />
-
-							<Link props={footer.c_getAQuate.cTA} />
-							</div>
-						</div>
-						
-
-						
-
-
-
-
-					</div>
-					
-
-					<div className="link-sec-footer ">
-					{footer.c_customer_services?
-						<div className="footer-block">
-							<h4 className="footer-block-title">{footer.c_customer_services.headerLinksHeading}</h4>
-							<ul className="list-none">
-								{footer.c_customer_services.headerLinks.map((customerService: any) => {
-									return (<li>
-											<Link props={customerService}/>
-										</li>)
-								})}
-							</ul>
-						</div>:''}
-						{footer.c_about_matalan?
-						<div className="footer-block">
-							<h4 className="footer-block-title">{footer.c_about_matalan.headerLinksHeading}</h4>
-							<ul className="list-none"><li>{footer.c_about_matalan.headerLinksHeading}</li>
-								{footer.c_about_matalan.headerLinks.map((aboutMatalan: any) => {
-									return (<li>
-										<Link props={aboutMatalan}/>
-										</li>)
-								})}
-							</ul>
-						</div>:''}
-						{footer.c_our_website?
-						<div className="footer-block">
-							<h4 className="footer-block-title">{footer.c_our_website.headerLinksHeading}</h4>
-							<ul className="list-none">
-								{footer.c_our_website.headerLinks.map((ourWebsite: any) => {
-									return (<li>
-										<Link props={ourWebsite}/>
-									</li>)
-								})}
-							</ul>
-						</div>:''}
-						<div className="footer-block">
-						<ul className="social-media-bx">
-							{footer.c_socialIcons.map((icon: any) => {
-								return (
-
-									<>
-										<li className=""> <a href={icon.cTA.link} target="_blank"><img src={icon.icon.url} height="20" alt="social" width="21" className="inline-block w-5 h-auto" /> </a> </li>
-									</>
-								)
-							})}
-						</ul>
+					<div className="row" style={{display:"contents"}}>
+						<div className="col-sm-12 col-md-6" style={{width:'52%'}}>
+							<h6>About</h6>
+							<p className="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative  to help the upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code wants to be simple. We will help programmers build up concepts in different programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
 						</div>
 
-					</div>
-					<div className="copyright-bx">
-						<span className="text-xs flex-wrap" data-copyright="">
-							{footer.c_footerDescription}</span>
+						<div className="col-xs-6 col-md-3" style={{float:'right', width:'22%'}}>
+							<h6>Categories</h6>
+							<ul className="footer-links">
+								<li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+								<li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+								<li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
+								<li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
+								<li><a href="http://scanfcode.com/category/android/">Android</a></li>
 
-						
-					</div>
+							</ul>
+						</div>
 
+						<div className="col-xs-6 col-md-3" style={{float:'right', width:'13%'}}>
+							<h6>Quick Links</h6>
+							<ul className="footer-links">
+								<li><a href="http://scanfcode.com/about/">About Us</a></li>
+								<li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+								<li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+								<li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+								<li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+							</ul>
+						</div>
+					</div>
+				
 				</div>
-
+				<hr style={{width:'91%', marginLeft:'3.6rem'}}/>
+				<div className="container">
+					<div className="row">
+						<div className="col-md-8 col-sm-6 col-xs-12">
+							<p className="copyright-text">Copyright &copy; 2017 All Rights Reserved by
+								<a href="#">Scanfcode</a>.
+							</p>
+						</div>
+					
+						<div className="col-md-4 col-sm-6 col-xs-12" style={{marginLeft:'77rem', marginTop:'-2.4rem'}}>
+							<ul className="social-icons">
+								<li><a className="facebook" href="#"><i className="fa fa-facebook"></i></a></li>
+								<li><a className="twitter" href="#"><i className="fa fa-twitter"></i></a></li>
+								<li><a className="dribbble" href="#"><i className="fa fa-dribbble"></i></a></li>
+								<li><a className="linkedin" href="#"><i className="fa fa-linkedin"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</footer>
-
-			<CookieConsent
-				buttonText={"Accept"}
-				buttonStyle={{
-					marginLeft: "100px",
-				}}
-			>
-				<p>
-					{cookieText}
-					<a className="text-cookies-link" href={cookiesUrl}>
-						{StaticData.cookie}
-					</a>
-					.
-				</p>
-			</CookieConsent>
 		</>
 	);
 };
 
 export default Footer;
-function handleMediaQueryChange(mediaQuery: MediaQueryList) {
-	throw new Error("Function not implemented.");
-}
+
 

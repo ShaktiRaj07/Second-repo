@@ -1,15 +1,17 @@
 {
-  "$id": "site-entity",
+  "$id": "ce_header_Footer",
   "filter": {
-    "entityIds": ["global-data"]
+    "entityIds": ["globaldata"]
   },
   "source": "knowledgeGraph",
   "fields": [
-      "name"
-
-  ],
+      "name",
+      "c_headerLogo",
+      "c_menufield"
+      
+       ],
   "localization": {
-    "locales": ["en_GB"],
+    "locales": ["en"],
     "primary": false
   }
 }
