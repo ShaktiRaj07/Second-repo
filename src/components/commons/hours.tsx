@@ -35,11 +35,10 @@ type OpenIntervals = {
 
 const now = new Date();
 
-
 /**
  * Dynamically creates a sort order based on today's day.
  */
-function getSorterForCurrentDay(todayIndex:any): { [key: string]: number } {
+function getSorterForCurrentDay(todayIndex: any): { [key: string]: number } {
   const dayIndexes = [0, 1, 2, 3, 4, 5, 6];
 
   const updatedDayIndexes = [];
@@ -94,20 +93,16 @@ const defaultSorter: { [key: string]: number } = {
   friday: 5,
   saturday: 6,
 };
-var cuurentdaynum:number;
+var cuurentdaynum: number;
 function sortByDay(week: Week): Week {
-  const currentdayuk=useCallback(
-    () => {
-      return new Date(
-        now.toLocaleString("en-US", { timeZone: "Europe/London" })
-      ).getDay();
+  const currentdayuk = useCallback(() => {
+    return new Date(
+      now.toLocaleString("en-US", { timeZone: "Europe/London" })
+    ).getDay();
+  }, [now]);
 
-    },
-    [now],
-  )
-  
   const todayIndex = currentdayuk();
-  cuurentdaynum= currentdayuk();
+  cuurentdaynum = currentdayuk();
   const tmp = [];
   for (const [k, v] of Object.entries(week)) {
     tmp[getSorterForCurrentDay(todayIndex)[k]] = { key: k, value: v };
@@ -208,7 +203,7 @@ function convertTo12HourFormat(time: string, includeMeridiem: boolean): string {
 type DayRow = {
   dayName: string;
   day: Day;
-  key:any;
+  key: any;
   isToday?: boolean;
   dayDate: any;
   holidayhours: any;
@@ -216,9 +211,9 @@ type DayRow = {
 };
 
 const DayRow = (props: DayRow) => {
-  const { dayName, day, isToday, dayDate, holidayhours,key, c_specific_day } =
+  const { dayName, day, isToday, dayDate, holidayhours, key, c_specific_day } =
     props;
-    const[currentDay,setCurrentDay]=useState('');
+  const [currentDay, setCurrentDay] = useState("");
   const [myDataAccordintToMe, setMyDataAccordintToMe] = React.useState({});
   let a: (
       | { day: string; month?: undefined; year?: undefined }
@@ -286,12 +281,11 @@ const DayRow = (props: DayRow) => {
     }
   }
 
- useEffect(()=>{
-  if (isToday) {
-    setCurrentDay("currentDay");
-  }
- },[])
-
+  useEffect(() => {
+    if (isToday) {
+      setCurrentDay("currentDay");
+    }
+  }, []);
 
   return (
     <tr className={currentDay} key={key}>
@@ -318,11 +312,11 @@ const DayRow = (props: DayRow) => {
       )}
 
       {!day.isClosed && (
-        <td className="dayTime" >
+        <td className="dayTime">
           {Status
             ? holidayopenintervals &&
               holidayopenintervals.map((res: any) => {
-                return res?.map((openint: any,index:any) => {
+                return res?.map((openint: any, index: any) => {
                   return (
                     <>
                       {openint.isClosed ? (
@@ -331,20 +325,16 @@ const DayRow = (props: DayRow) => {
                         </div>
                       ) : (
                         openint?.openIntervals &&
-                        openint.openIntervals.map((res: any,index:any) => {
+                        openint.openIntervals.map((res: any, index: any) => {
                           return (
                             <>
                               <div className="time-group" key={index}>
                                 <span className="time-b">
-                                  {OpenStausFunctions.formatTime(
-                                    res.start
-                                  )}
+                                  {OpenStausFunctions.formatTime(res.start)}
                                 </span>{" "}
                                 <span className="dash"></span>{" "}
                                 <span className="time-b">
-                                  {OpenStausFunctions.formatTime(
-                                    res.end
-                                  )}
+                                  {OpenStausFunctions.formatTime(res.end)}
                                 </span>
                               </div>
                             </>
@@ -379,21 +369,23 @@ const DayRow = (props: DayRow) => {
             {holidayopenintervals &&
               holidayopenintervals.map((res: any) => {
                 return res.map((openint: any) => {
-                  return openint.openIntervals.map((res: any,index:number) => {
-                    return (
-                      <>
-                        <div className="time-group" key={index}>
-                          <span className="time-b">
-                            {OpenStausFunctions.formatTime(res.start)}
-                          </span>{" "}
-                          <span className="dash"></span>{" "}
-                          <span className="time-b">
-                            {OpenStausFunctions.formatTime(res.end)}
-                          </span>
-                        </div>
-                      </>
-                    );
-                  });
+                  return openint.openIntervals.map(
+                    (res: any, index: number) => {
+                      return (
+                        <>
+                          <div className="time-group" key={index}>
+                            <span className="time-b">
+                              {OpenStausFunctions.formatTime(res.start)}
+                            </span>{" "}
+                            <span className="dash"></span>{" "}
+                            <span className="time-b">
+                              {OpenStausFunctions.formatTime(res.end)}
+                            </span>
+                          </div>
+                        </>
+                      );
+                    }
+                  );
                 });
               })}
           </td>

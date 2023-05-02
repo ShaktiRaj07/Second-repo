@@ -15,14 +15,17 @@ export async function updateLocationIfNeeded(
   intents: SearchIntent[],
   geolocationOptions?: PositionOptions
 ) {
-  if (intents.includes(SearchIntent.NearMe) && !answersActions.state.location.userLocation) {
+  if (
+    intents.includes(SearchIntent.NearMe) &&
+    !answersActions.state.location.userLocation
+  ) {
     try {
       const position = await getUserLocation(geolocationOptions);
       answersActions.setUserLocation({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       });
-    } catch(e) {
+    } catch (e) {
       console.error(e);
     }
   }
@@ -31,7 +34,10 @@ export async function updateLocationIfNeeded(
 /**
  * Executes a universal/vertical search
  */
-export async function executeSearch(answersActions: AnswersActions, isVertical: boolean) {
+export async function executeSearch(
+  answersActions: AnswersActions,
+  isVertical: boolean
+) {
   isVertical
     ? answersActions.executeVerticalQuery()
     : answersActions.executeUniversalQuery();
@@ -40,7 +46,10 @@ export async function executeSearch(answersActions: AnswersActions, isVertical: 
 /**
  * Get search intents of the current query stored in headless using autocomplete request.
  */
-export async function getSearchIntents(answersActions: AnswersActions, isVertical: boolean) {
+export async function getSearchIntents(
+  answersActions: AnswersActions,
+  isVertical: boolean
+) {
   const results = isVertical
     ? await answersActions.executeVerticalAutocomplete()
     : await answersActions.executeUniversalAutocomplete();
@@ -50,19 +59,25 @@ export async function getSearchIntents(answersActions: AnswersActions, isVertica
 /**
  * Retrieves user's location using nagivator.geolocation API
  */
-export async function getUserLocation(geolocationOptions?: PositionOptions): Promise<GeolocationPosition> {
+export async function getUserLocation(
+  geolocationOptions?: PositionOptions
+): Promise<GeolocationPosition> {
   return new Promise((resolve, reject) => {
-    if ('geolocation' in navigator) {
+    if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
-        position => resolve(position),
-        err => { 
-          console.error('Error occured using geolocation API. Unable to determine user\'s location.');
-          reject(err); 
+        (position) => resolve(position),
+        (err) => {
+          console.error(
+            "Error occured using geolocation API. Unable to determine user's location."
+          );
+          reject(err);
         },
         { ...defaultGeolocationOptions, ...geolocationOptions }
       );
     } else {
-      reject('No access to geolocation API. Unable to determine user\'s location.');
+      reject(
+        "No access to geolocation API. Unable to determine user's location."
+      );
     }
   });
 }

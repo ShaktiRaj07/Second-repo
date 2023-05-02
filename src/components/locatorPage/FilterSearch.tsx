@@ -63,14 +63,14 @@ export interface FilterSearchProps {
   handleSetUserShareLocation: any;
   inputvalue: any;
   params: any;
-  displaymsg:any;
-  setDisplaymsg:any;
-  setSearchInputValue:any
+  displaymsg: any;
+  setDisplaymsg: any;
+  setSearchInputValue: any;
 }
 
 type FilterHandle = {
-  setInputValue: (value: String) => void,
-}
+  setInputValue: (value: String) => void;
+};
 
 const FilterSearch = React.forwardRef<FilterHandle, FilterSearchProps>(
   (
@@ -87,7 +87,7 @@ const FilterSearch = React.forwardRef<FilterHandle, FilterSearchProps>(
       params,
       displaymsg,
       setDisplaymsg,
-      setSearchInputValue
+      setSearchInputValue,
     }: FilterSearchProps,
     ref
   ): JSX.Element => {
@@ -97,12 +97,12 @@ const FilterSearch = React.forwardRef<FilterHandle, FilterSearchProps>(
     const searchParamFields = searchFields.map((searchField) => {
       return { ...searchField, fetchEntities: false };
     });
-    React.useImperativeHandle(ref,() => {
+    React.useImperativeHandle(ref, () => {
       return {
-        setInputValue: (value: String) => setInput(value)
-      }
-    })
-   console.log(displaymsg,"fisttimedispalydfsd")
+        setInputValue: (value: String) => setInput(value),
+      };
+    });
+    console.log(displaymsg, "fisttimedispalydfsd");
     const cssClasses = useComposedCssClasses(
       builtInCssClasses,
       customCssClasses,
@@ -119,10 +119,9 @@ const FilterSearch = React.forwardRef<FilterHandle, FilterSearchProps>(
         searchParamFields
       )
     );
-  
 
     let sections: { results: Option[]; label?: string }[] = [];
-     
+
     if (filterSearchResponse) {
       sections = filterSearchResponse.sections.map((section) => {
         return {

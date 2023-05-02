@@ -1,11 +1,21 @@
-import { Children, cloneElement, isValidElement, ReactElement, ReactNode, ReactPortal } from 'react';
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  ReactElement,
+  ReactNode,
+  ReactPortal,
+} from "react";
 
 /**
  * Recursively performs React.Children.map on a given ReactNode.
  */
 export default function recursivelyMapChildren(
   children: ReactNode,
-  elementReplacer: (c: ReactElement | ReactPortal, index: number) => ReactElement | null
+  elementReplacer: (
+    c: ReactElement | ReactPortal,
+    index: number
+  ) => ReactElement | null
 ): ReactNode {
   return Children.map<ReactNode, ReactNode>(children, (c, index) => {
     if (!isValidElement(c)) {
@@ -19,7 +29,10 @@ export default function recursivelyMapChildren(
     if (!grandchildren) {
       return replacedElement;
     }
-    const replacedGrandchildren = recursivelyMapChildren(grandchildren, elementReplacer);
+    const replacedGrandchildren = recursivelyMapChildren(
+      grandchildren,
+      elementReplacer
+    );
     return cloneElement(replacedElement, { children: replacedGrandchildren });
   });
 }

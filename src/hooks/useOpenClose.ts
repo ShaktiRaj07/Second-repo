@@ -17,11 +17,7 @@ function useOpenClose(hoursData: Week, timeZone: string) {
     return hours * 3600 + minutes * 60;
   };
 
-  const getIntervalOnDate = (
-    hoursData: Week,
-    key: string,
-    index: number
-  ) => {
+  const getIntervalOnDate = (hoursData: Week, key: string, index: number) => {
     // Check for holiday
     if (hoursData && hoursData.holidayHours) {
       const days = [

@@ -6,13 +6,10 @@ type Link = {
   url: string;
 };
 
-
 const Header = (props: any) => {
   const linkDoms = props._site.c_menufield?.map((link: any) => (
     <div key={link.label}>
-      <a href="#">
-        {link.label}
-      </a>
+      <a href="#" className="beautify">{link.label}</a>
     </div>
   ));
 
@@ -20,14 +17,11 @@ const Header = (props: any) => {
     <>
       <header>
         <div className="overlay">
-        <img
-            src="https://a.mktgcdn.com/p-sandbox/NbRSu6nMaZjEnZx6GoJoXlrardl1cAAFMCjiKtfS52g/1844x1642.png"  className="imglogo"/>
+          <img src={props._site.c_headerLogo.url} className="imglogo" />
           <nav className="nav-2">
             <span className="navmanage">{linkDoms}</span>
           </nav>
           <h1 className="headingmain">Simply The Best</h1>
-          <br />
-          <button>READ MORE</button>
         </div>
       </header>
     </>

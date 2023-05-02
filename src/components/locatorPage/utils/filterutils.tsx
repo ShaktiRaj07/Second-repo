@@ -1,10 +1,16 @@
-import { NearFilterValue, CombinedFilter, Filter } from '@yext/answers-headless-react';
+import {
+  NearFilterValue,
+  CombinedFilter,
+  Filter,
+} from "@yext/answers-headless-react";
 
 /**
  * Check if the object follows NearFilterValue interface
  */
 export function isNearFilterValue(obj: any): obj is NearFilterValue {
-  return typeof obj === 'object' && 'radius' in obj && 'lat' in obj && 'long' in obj;
+  return (
+    typeof obj === "object" && "radius" in obj && "lat" in obj && "long" in obj
+  );
 }
 
 /**
@@ -12,34 +18,43 @@ export function isNearFilterValue(obj: any): obj is NearFilterValue {
  */
 export function getFilterDisplayValue(filter: Filter): string {
   const value = filter.value;
-  if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+  if (
+    typeof value === "string" ||
+    typeof value === "number" ||
+    typeof value === "boolean"
+  ) {
     return value.toString();
   }
   if (isNearFilterValue(value)) {
     return `within ${value.radius}m radius`;
   }
-  throw Error('unrecognized filter value type');
+  throw Error("unrecognized filter value type");
 }
-
 
 /**
  * Check if the object follows CombinedFilter interface
  */
-export function isCombinedFilter(obj: Filter | CombinedFilter): obj is CombinedFilter {
-  return 'filters' in obj && 'combinator' in obj;
+export function isCombinedFilter(
+  obj: Filter | CombinedFilter
+): obj is CombinedFilter {
+  return "filters" in obj && "combinator" in obj;
 }
 
 /**
- * Flatten the given filter, such as if the given filter is of type CombinedFilter 
+ * Flatten the given filter, such as if the given filter is of type CombinedFilter
  * with possible nested layers of Filter objects, into a 1-dimension array of Filter objects
  */
-export function flattenFilters(filter: Filter | CombinedFilter | null | undefined): Array<Filter> {
+export function flattenFilters(
+  filter: Filter | CombinedFilter | null | undefined
+): Array<Filter> {
   let filters: Array<Filter> = [];
-  if(!filter) {
+  if (!filter) {
     return filters;
   }
-  if(isCombinedFilter(filter)) {
-    filter.filters.forEach(fltr => filters = filters.concat(flattenFilters(fltr)));
+  if (isCombinedFilter(filter)) {
+    filter.filters.forEach(
+      (fltr) => (filters = filters.concat(flattenFilters(fltr)))
+    );
   } else {
     filters.push(filter);
   }
@@ -49,7 +64,10 @@ export function flattenFilters(filter: Filter | CombinedFilter | null | undefine
 /**
  * Returns true if the two given filters are the same
  */
-export function isDuplicateFilter(thisFilter: Filter, otherFilter: Filter): boolean {
+export function isDuplicateFilter(
+  thisFilter: Filter,
+  otherFilter: Filter
+): boolean {
   if (thisFilter.fieldId !== otherFilter.fieldId) {
     return false;
   }

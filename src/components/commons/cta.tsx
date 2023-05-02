@@ -7,14 +7,17 @@ type Cta = {
 };
 
 const Cta = (props: Cta) => {
-  const { 
-    buttonText, 
-    url,
-    style 
-  } = props;
+  const { buttonText, url, style } = props;
 
   return (
-    <a href={url} className={`${style}` + " py-4 px-6 text-base font-bold text-white rounded-lg drop-shadow-md"} rel="noopener noreferrer">
+    <a
+      href={url}
+      className={
+        `${style}` +
+        " py-4 px-6 text-base font-bold text-white rounded-lg drop-shadow-md"
+      }
+      rel="noopener noreferrer"
+    >
       {buttonText}
     </a>
   );

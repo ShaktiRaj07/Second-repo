@@ -39,78 +39,84 @@ function Model(props: any) {
   }
 
   var day;
-  return(
+  return (
     <>
-  {props.holidayHours.map((res:any,index:Number)=>{
-    const d = new Date(res.date);
-     day = d.getDay();
-    let a,s,holidayDate:any;
-   function join(t:any, a:any, s:any) {
-     function format(m:any) {
-     let f = new Intl.DateTimeFormat('en', m);
-     return f.format(t);  
-     }
-return a.map(format).join(s);
-  } 
+      {props.holidayHours.map((res: any, index: Number) => {
+        const d = new Date(res.date);
+        day = d.getDay();
+        let a, s, holidayDate: any;
+        function join(t: any, a: any, s: any) {
+          function format(m: any) {
+            let f = new Intl.DateTimeFormat("en", m);
+            return f.format(t);
+          }
+          return a.map(format).join(s);
+        }
 
- /* a = [ {day: '2-digit'},{month: 'numeric'},{year: 'numeric'}];
+        /* a = [ {day: '2-digit'},{month: 'numeric'},{year: 'numeric'}];
   s = join(new Date(), a, '-');  
   console.log(new Date(join(new Date(res.date), a, '-')).getTime(),new Date(s).getTime())
       if(new Date(join(new Date(res.date), a, '-')).getTime()>=new Date(s).getTime()){
 */
 
-    var d1 = new Date();
-    var d2 = new Date(res.date);
- 
-    if(d2.getDate() >= d1.getDate()){    
-   
-  return (
-    <>
-     
-      <a onClick={openModal} className="text-link" id="holidaybtn" href="javascript:void(0);">
-        {props.name}
-      </a>
+        var d1 = new Date();
+        var d2 = new Date(res.date);
 
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <a
-          onClick={closeModal}
-          type="button"
-          id="closeButton"
-          className="closeButton bg-closeIcon bg-no-repeat bg-center w-7 h-7 bg-[length:48px]"
-        >
-          <div dangerouslySetInnerHTML={{ __html: Cross }} />
-        </a>
+        if (d2.getDate() >= d1.getDate()) {
+          return (
+            <>
+              <a
+                onClick={openModal}
+                className="text-link"
+                id="holidaybtn"
+                href="javascript:void(0);"
+              >
+                {props.name}
+              </a>
 
-        {props.holidayHours ? (
-          <>
-            <div className="font-bold text-lg  mb-4">{StaticData.Holdiay}</div>
-            <div className="pop-up-holyhrs heading">
-              <div>Date</div>
+              <Modal
+                isOpen={modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+              >
+                <a
+                  onClick={closeModal}
+                  type="button"
+                  id="closeButton"
+                  className="closeButton bg-closeIcon bg-no-repeat bg-center w-7 h-7 bg-[length:48px]"
+                >
+                  <div dangerouslySetInnerHTML={{ __html: Cross }} />
+                </a>
 
-              <div>Day</div>
-              <div> Opening Hours</div>
-              <div> Specific Day</div>
-            </div>
-            <Holidayhours hours={props.holidayHours} c_specific_day={props.c_specific_day} />
-          </>
-        ) : (
-          ""
-        )}
-      </Modal>
+                {props.holidayHours ? (
+                  <>
+                    <div className="font-bold text-lg  mb-4">
+                      {StaticData.Holdiay}
+                    </div>
+                    <div className="pop-up-holyhrs heading">
+                      <div>Date</div>
+
+                      <div>Day</div>
+                      <div> Opening Hours</div>
+                      <div> Specific Day</div>
+                    </div>
+                    <Holidayhours
+                      hours={props.holidayHours}
+                      c_specific_day={props.c_specific_day}
+                    />
+                  </>
+                ) : (
+                  ""
+                )}
+              </Modal>
+            </>
+          );
+        }
+      })}
     </>
   );
-}
-})
-
-}
-</>
-  )
 }
 
 export default Model;

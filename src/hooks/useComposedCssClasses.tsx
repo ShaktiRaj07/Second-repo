@@ -1,12 +1,19 @@
-import { composeTheme } from '@css-modules-theme/core';
-import { Compose, Theme } from '@css-modules-theme/core';
-import { useMemo } from 'react';
-import { extendTailwindMerge } from 'tailwind-merge';
+import { composeTheme } from "@css-modules-theme/core";
+import { Compose, Theme } from "@css-modules-theme/core";
+import { useMemo } from "react";
+import { extendTailwindMerge } from "tailwind-merge";
 
 export const twMerge = extendTailwindMerge({
   classGroups: {
-    form: ['input', 'checkbox', 'textarea', 'select', 'multiselect', 'radio'].map(v => 'form-' + v)
-  }
+    form: [
+      "input",
+      "checkbox",
+      "textarea",
+      "select",
+      "multiselect",
+      "radio",
+    ].map((v) => "form-" + v),
+  },
 });
 /**
  * The method of combining a component's built-in CSS classes with custom CSS classes
@@ -16,7 +23,7 @@ export const twMerge = extendTailwindMerge({
  * Replace ignore all of the component’s built-in classes and only uses the custom classes.
  * Assign keeps the component's built-in classes, however custom classes will completely override their
  * associated built-in classes.
- * 
+ *
  * @example
  * Suppose a component has a built-in theme of `{ icon: 'Icon', button: 'Button' }`,
  * and it is provided a custom theme of `{ icon: 'Blue' }`.
@@ -25,7 +32,7 @@ export const twMerge = extendTailwindMerge({
  * Replace: { icon: 'Blue' }
  * Assign: { icon: 'Blue', button: 'Button' }
  */
-export type CompositionMethod = 'merge' | 'replace' | 'assign';
+export type CompositionMethod = "merge" | "replace" | "assign";
 
 /**
  * A react hook which combines a component's built-in CSS classes with custom CSS classes.
@@ -34,7 +41,7 @@ export type CompositionMethod = 'merge' | 'replace' | 'assign';
  * @param cssCompositionMethod The method of combining the built-in classes with the custom classes
  * @returns The composed CSS classes
  */
-export function useComposedCssClasses<ClassInterface> (
+export function useComposedCssClasses<ClassInterface>(
   builtInClasses: ClassInterface,
   customClasses?: ClassInterface,
   cssCompositionMethod?: CompositionMethod
@@ -47,7 +54,10 @@ export function useComposedCssClasses<ClassInterface> (
       return customClasses ?? {};
     }
     const compose = getCssModulesCompose(cssCompositionMethod);
-    return composeTheme([{ theme: builtInClasses }, { theme: customClasses, compose }]);
+    return composeTheme([
+      { theme: builtInClasses },
+      { theme: customClasses, compose },
+    ]);
   }, [builtInClasses, customClasses, cssCompositionMethod]);
 }
 
@@ -56,11 +66,13 @@ export function useComposedCssClasses<ClassInterface> (
  * @param cssCompositionMethod The cssCompositionMethod method
  * @returns The css-modules-theme Compose type
  */
-function getCssModulesCompose(cssCompositionMethod: CompositionMethod = 'merge'): Compose {
+function getCssModulesCompose(
+  cssCompositionMethod: CompositionMethod = "merge"
+): Compose {
   return {
     replace: Compose.Replace,
     assign: Compose.Assign,
-    merge: Compose.Merge
+    merge: Compose.Merge,
   }[cssCompositionMethod];
 }
 
@@ -69,8 +81,8 @@ function getCssModulesCompose(cssCompositionMethod: CompositionMethod = 'merge')
  * @param obj The object to test
  * @returns Whether or not the object is a Theme object
  */
-function isThemeObject (obj: unknown): obj is Theme {
-  if (obj === null || typeof obj !== 'object') {
+function isThemeObject(obj: unknown): obj is Theme {
+  if (obj === null || typeof obj !== "object") {
     return false;
   }
   return true;

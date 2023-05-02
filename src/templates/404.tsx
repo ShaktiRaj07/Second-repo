@@ -16,13 +16,10 @@ export const config: TemplateConfig = {
     $id: "404",
     // Specifies the exact data that each generated document will contain. This data is passed in
     // directly as props to the default exported function.
-    fields: [
-      "name",
-      
-    ],
+    fields: ["name"],
     // Defines the scope of entities that qualify for this stream.
     filter: {
-      entityIds: ["global-data"]
+      entityIds: ["global-data"],
     },
     // The entity language profiles that documents will be generated for.
     localization: {
@@ -49,17 +46,13 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = () => {
           href: favicon,
         },
       },
-    ]
+    ],
   };
 };
 
 // Template that will show as the page
-const FourOhFour: Template<TemplateRenderProps> = ({
-  document,
-}) => {
-  const {
-    _site
-  } = document;
+const FourOhFour: Template<TemplateRenderProps> = ({ document }) => {
+  const { _site } = document;
   return (
     <>
       <PageLayout global={_site}>
@@ -72,12 +65,14 @@ const FourOhFour: Template<TemplateRenderProps> = ({
               <p>{StaticData.cantfind_page}.</p>
               <p>{StaticData.Youcouldtry}</p>
               <div className="button-bx max-w-[45rem] !mx-auto !mt-5">
-                <a className="btn" href="javascript:history.back()">{StaticData.Previuspage} &gt;</a>
-                <a className="btn" href="/">{StaticData.homePage} &gt;</a>
+                <a className="btn" href="javascript:history.back()">
+                  {StaticData.Previuspage} &gt;
+                </a>
+                <a className="btn" href="/">
+                  {StaticData.homePage} &gt;
+                </a>
               </div>
             </div>
-
-
           </div>
         </div>
       </PageLayout>

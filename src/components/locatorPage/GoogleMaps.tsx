@@ -15,7 +15,7 @@ import Mapicon2 from "../../images/MGMpin.svg";
 import clustericon from "../../images/cluster.png";
 import mapimage from "../../images/map.svg";
 import timesvg from "../../images/watch-icn.svg";
-import Hovermap from "../../images/MGMhover1.svg"
+import Hovermap from "../../images/MGMhover1.svg";
 import Hours from "../commons/hours";
 import reactElementToJSXString from "react-element-to-jsx-string";
 import Nav from "../layouts/Nav";
@@ -102,7 +102,7 @@ function UnwrappedGoogleMaps({
   const [downinfo, setDownInfo] = useState(true);
   const [hover, setHover] = useState(true);
   const loading = useSearchState((s) => s.searchStatus.isLoading);
- 
+
   let isHover = true;
   const searchZoom: number | number | null | undefined = null;
   let currentMapZoom: number | undefined = 0;
@@ -119,7 +119,8 @@ function UnwrappedGoogleMaps({
 
   const refLocationResults = useRef({});
 
-  const locationResults = useSearchState(state => state.vertical?.results) || [];
+  const locationResults =
+    useSearchState((state) => state.vertical?.results) || [];
   refLocationResults.current = locationResults;
 
   locationResults.length > 0
@@ -209,7 +210,7 @@ function UnwrappedGoogleMaps({
   const Usermarker1 = new google.maps.Marker({
     position,
     map,
-    icon: UserMarker
+    icon: UserMarker,
   });
   usermarker.current.push(Usermarker1);
 
@@ -276,7 +277,6 @@ function UnwrappedGoogleMaps({
         })
       );
     } else if (markers1.current.length > 0 && map && check && hover) {
-
       setTimeout(function () {
         const bounds = new google.maps.LatLngBounds();
 
@@ -500,7 +500,10 @@ function UnwrappedGoogleMaps({
             {/* <div className="icon"> <img className=" " src={mapimage} width="20" height="20"
         alt="" /></div> */}
             <h2>
-              <a className="inline-block notHighlight" href={`/${result.rawData.id}`}>
+              <a
+                className="inline-block notHighlight"
+                href={`/${result.rawData.id}`}
+              >
                 {result.rawData.name}
               </a>
             </h2>

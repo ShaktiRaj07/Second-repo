@@ -4,12 +4,12 @@ import Cta from "../components/commons/cta";
 import Contact from "../components/locationDetail/contact";
 import ApiCall from "../Apis/ApiCall";
 import Nearby from "../components/locationDetail/Nearby";
-import { CustomFieldDebuggerReactProvider } from '@yext/custom-field-debugger';
+import { CustomFieldDebuggerReactProvider } from "@yext/custom-field-debugger";
 import { JsonLd } from "react-schemaorg";
 import Opening from "../components/commons/openClose";
 import { nearByLocation } from "../types/nearByLocation";
-import Logo from "../images/logo-header.svg"
-import offerBanner from "../images/offer-banner.jpg"
+import Logo from "../images/logo-header.svg";
+import offerBanner from "../images/offer-banner.jpg";
 import IframeMap from "../components/locationDetail/IframeMap";
 import "../index.css";
 import {
@@ -36,10 +36,17 @@ import CustomMap from "../components/locationDetail/CustomMap";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
 import StoreHighlight from "../components/locationDetail/SoreHighlight";
 import OpenClose from "../components/commons/openClose";
-import Faq from "../components/locationDetail/Faqs";
+// import Faq from "../components/locationDetail/Faqs";
 import { StaticData } from "../../sites-global/staticData";
 
-import { apikey_for_entity, baseuRL, stagingBaseurl, AnalyticsEnableDebugging, AnalyticsEnableTrackingCookie, favicon } from "../../sites-global/global";
+import {
+  apikey_for_entity,
+  baseuRL,
+  stagingBaseurl,
+  AnalyticsEnableDebugging,
+  AnalyticsEnableTrackingCookie,
+  favicon,
+} from "../../sites-global/global";
 import {
   AnalyticsProvider,
   AnalyticsScopeProvider,
@@ -49,6 +56,7 @@ import { Fade, Slide } from "react-awesome-reveal";
 import MgmTimber from "../components/locationDetail/MgmTimber";
 import { AnswerExperienceConfig } from "../config/answersHeadlessConfig";
 import Mystore from "../components/locationDetail/MyStore";
+import Faq from "../components/locationDetail/Faqs";
 
 /**
  * Required when Knowledge Graph data is used for a template.
@@ -73,11 +81,13 @@ export const config: TemplateConfig = {
       "cityCoordinate",
       "c_my_field",
       "c_geniousGallery",
+      "c_fAQ.question",
+      "c_fAQ.answer",
+      "c_ownersection",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
-      entityTypes: ['location']
-
+      entityTypes: ["location"],
     },
     // The entity language profiles that documents will be generated for.
     localization: {
@@ -133,7 +143,9 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   document,
 }): HeadConfig => {
   return {
-    title: document.c_meta_title ? document.c_meta_title : `${document.name} Store of MGM Timber`,
+    title: document.c_meta_title
+      ? document.c_meta_title
+      : `${document.name} Store of MGM Timber`,
     charset: "UTF-8",
     viewport: "width=device-width, initial-scale=1",
     tags: [
@@ -141,10 +153,13 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "description",
-          content: `${document.c_meta_description ? document.c_meta_description : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`}`,
+          content: `${
+            document.c_meta_description
+              ? document.c_meta_description
+              : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
+          }`,
         },
       },
-
 
       {
         type: "meta",
@@ -166,9 +181,11 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "link",
         attributes: {
           rel: "canonical",
-          href: `${document._site?.c_canonical ? document?.c_canonical : stagingBaseurl
-
-            }${document.slug ? document.slug : `${document.name.toLowerCase()}`}.html`,
+          href: `${
+            document._site?.c_canonical ? document?.c_canonical : stagingBaseurl
+          }${
+            document.slug ? document.slug : `${document.name.toLowerCase()}`
+          }.html`,
         },
       },
 
@@ -176,7 +193,11 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           property: "og:description",
-          content: `${document.c_meta_description ? document.c_meta_description : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`}`,
+          content: `${
+            document.c_meta_description
+              ? document.c_meta_description
+              : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
+          }`,
         },
       },
       {
@@ -211,44 +232,47 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "twitter:title",
-          content: document.c_meta_title ? document.c_meta_title : `${document.name} Store of MGM Timber`,
+          content: document.c_meta_title
+            ? document.c_meta_title
+            : `${document.name} Store of MGM Timber`,
         },
       },
       {
         type: "meta",
         attributes: {
           name: "twitter:description",
-          content: `${document.c_meta_description ? document.c_meta_description : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`}`,
+          content: `${
+            document.c_meta_description
+              ? document.c_meta_description
+              : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
+          }`,
         },
       },
       /// twitter tag
-
-
-
-
-
-
     ],
-
   };
 };
 type ExternalApiData = TemplateProps & { externalApiData: nearByLocation };
 export const transformProps: TransformProps<ExternalApiData> = async (
   data: any
 ) => {
-
-  var location = `${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.latitude : data.document.displayCoordinate.latitude},${data.document.yextDisplayCoordinate ? data.document.yextDisplayCoordinate.longitude : data.document.displayCoordinate.longitude}`;
+  var location = `${
+    data.document.yextDisplayCoordinate
+      ? data.document.yextDisplayCoordinate.latitude
+      : data.document.displayCoordinate.latitude
+  },${
+    data.document.yextDisplayCoordinate
+      ? data.document.yextDisplayCoordinate.longitude
+      : data.document.displayCoordinate.longitude
+  }`;
 
   const url = `${AnswerExperienceConfig.endpoints.verticalSearch}?experienceKey=${AnswerExperienceConfig.experienceKey}&api_key=${AnswerExperienceConfig.apiKey}&v=20220511&version=${AnswerExperienceConfig.experienceVersion}&locale=${AnswerExperienceConfig.locale}&location=${location}&verticalKey=${AnswerExperienceConfig.verticalKey}&limit=4&retrieveFacets=true&skipSpellCheck=false&sessionTrackingEnabled=true&source=STANDARD`;
-  console.log(url)
+  console.log(url);
   const externalApiData = (await fetch(url).then((res: any) =>
     res.json()
-
   )) as nearByLocation;
   return { ...data, externalApiData };
 };
-
-
 
 type ExternalApiRenderData = TemplateRenderProps & {
   externalApiData: nearByLocation;
@@ -279,8 +303,10 @@ const Location: Template<ExternalApiRenderData> = ({
     name,
     c_my_field,
     c_geniousGallery,
+    c_fAQ,
+    c_ownersection,
   } = document;
-
+        console.log('c_fAQ', c_fAQ)
   let templateData = { document: document, __meta: __meta };
   let hoursSchema = [];
   let breadcrumbScheme = [];
@@ -332,7 +358,6 @@ const Location: Template<ExternalApiRenderData> = ({
           item: {
             "@id":
               stagingBaseurl +
-
               document.dm_directoryParents[index].slug +
               ".html",
             name: i.name,
@@ -356,7 +381,8 @@ const Location: Template<ExternalApiRenderData> = ({
           item: {
             "@id":
               stagingBaseurl +
-              url + "/" +
+              url +
+              "/" +
               document.dm_directoryParents[index].slug +
               ".html",
             name: i.name,
@@ -379,7 +405,8 @@ const Location: Template<ExternalApiRenderData> = ({
           item: {
             "@id":
               stagingBaseurl +
-              url + "/" +
+              url +
+              "/" +
               document.dm_directoryParents[index].slug +
               ".html",
             name: i.name,
@@ -396,16 +423,16 @@ const Location: Template<ExternalApiRenderData> = ({
       name: document.name,
     },
   });
-  let imageurl = photoGallery ? photoGallery.map((element: any) => {
-    return element.image.url
-  }) : null;
-  console.log(document)
+  let imageurl = photoGallery
+    ? photoGallery.map((element: any) => {
+        return element.image.url;
+      })
+    : null;
+  console.log(document);
   let bannerimage = c_banner_image && c_banner_image.image.url;
-
 
   return (
     <>
-
       <JsonLd<Store>
         item={{
           "@context": "https://schema.org",
@@ -423,7 +450,9 @@ const Location: Template<ExternalApiRenderData> = ({
           description: description,
           image: imageurl,
           telephone: mainPhone,
-          url: `${c_canonical ? c_canonical : stagingBaseurl}${slug ? slug : `${name}`}.html`
+          url: `${c_canonical ? c_canonical : stagingBaseurl}${
+            slug ? slug : `${name}`
+          }.html`,
         }}
       />
       <JsonLd<BreadcrumbList>
@@ -443,30 +472,53 @@ const Location: Template<ExternalApiRenderData> = ({
         {" "}
         <AnalyticsScopeProvider name={""}>
           <PageLayout _site={_site}>
-
-
             <div className="container">
-              <div className='banner-text banner-dark-bg justify-center text-center'>
-                <h1 className="">{name}
-                </h1>
+              <div className="banner-text banner-dark-bg justify-center text-center">
+                <h1 className="">{name}</h1>
                 <div className="openClosestatus detail-page closeing-div">
                   <OpenClose timezone={timezone} hours={hours} />
                 </div>
               </div>
             </div>
             <div className="location-information">
-              <Contact address={address}
-                phone={mainPhone} latitude={yextDisplayCoordinate ? yextDisplayCoordinate.latitude : displayCoordinate?.latitude}
-                yextDisplayCoordinate={yextDisplayCoordinate} longitude={yextDisplayCoordinate ? yextDisplayCoordinate.longitude : displayCoordinate?.longitude} hours={hours} additionalHoursText={additionalHoursText} ></Contact>
-              {
-                hours ?
-                  <div className="map-sec" id="map_canvas">
-                    <CustomMap prop={yextDisplayCoordinate ? yextDisplayCoordinate : displayCoordinate} />
-                  </div> :
-                  <div className="map-sec without-hours" id="map_canvas">
-                    <CustomMap prop={yextDisplayCoordinate ? yextDisplayCoordinate : displayCoordinate} />
-                  </div>
-              }
+              <Contact
+                address={address}
+                phone={mainPhone}
+                latitude={
+                  yextDisplayCoordinate
+                    ? yextDisplayCoordinate.latitude
+                    : displayCoordinate?.latitude
+                }
+                yextDisplayCoordinate={yextDisplayCoordinate}
+                longitude={
+                  yextDisplayCoordinate
+                    ? yextDisplayCoordinate.longitude
+                    : displayCoordinate?.longitude
+                }
+                hours={hours}
+                additionalHoursText={additionalHoursText}
+              ></Contact>
+              {hours ? (
+                <div className="map-sec" id="map_canvas">
+                  <CustomMap
+                    prop={
+                      yextDisplayCoordinate
+                        ? yextDisplayCoordinate
+                        : displayCoordinate
+                    }
+                  />
+                </div>
+              ) : (
+                <div className="map-sec without-hours" id="map_canvas">
+                  <CustomMap
+                    prop={
+                      yextDisplayCoordinate
+                        ? yextDisplayCoordinate
+                        : displayCoordinate
+                    }
+                  />
+                </div>
+              )}
             </div>
             {/* Create new section  */}
 
@@ -474,65 +526,90 @@ const Location: Template<ExternalApiRenderData> = ({
             <div className="containerr">
               <h1 className="head">Our Gallery</h1>
               {c_geniousGallery?.images.map((item: any) => {
-
                 return (
                   <>
                     <div className="effect11">
                       <img src={item.url} className="grid-item" alt="images" />
                     </div>
                   </>
-
                 );
-
               })}
             </div>
 
             {/* new section start */}
             <div className="heading1">Our Owner's</div>
             <div className="Section5">
-            <div className="box">
-              <div className="card">
-                <div className="imgBx">
-                  <img src="https://1.bp.blogspot.com/-ZJx9AmmzfTY/YM5FZG0CkZI/AAAAAAAAAyg/Gxq7fMYY4Hcgt2U-u-cRLlxVVuT83WZXgCLcBGAsYHQ/s2048/IMG_1942%2Bcopy.jpg" alt="images"/>
+              <div className="box">
+                <div className="card">
+                  <div className="imgBx">
+                    <img
+                      src="https://1.bp.blogspot.com/-ZJx9AmmzfTY/YM5FZG0CkZI/AAAAAAAAAyg/Gxq7fMYY4Hcgt2U-u-cRLlxVVuT83WZXgCLcBGAsYHQ/s2048/IMG_1942%2Bcopy.jpg"
+                      alt="images"
+                    />
+                  </div>
+                  <div className="details">
+                    <h2>
+                      Anubhav Dubey
+                      <br />
+                      <span>Owner</span>
+                    </h2>
+                  </div>
                 </div>
-                <div className="details">
-                  <h2>Anubhav Dubey<br/><span>Owner</span></h2>
-                </div>
-              </div>
 
-              <div className="card">
-                <div className="imgBx">
-                  <img src="https://akm-img-a-in.tosshub.com/businesstoday/images/story/202209/fbeyuh9veaa1yqk_1-sixteen_nine.jpg?size=948:533" alt="images"/>
+                <div className="card">
+                  <div className="imgBx">
+                    <img
+                      src="https://akm-img-a-in.tosshub.com/businesstoday/images/story/202209/fbeyuh9veaa1yqk_1-sixteen_nine.jpg?size=948:533"
+                      alt="images"
+                    />
+                  </div>
+                  <div className="details">
+                    <h2>
+                      Abhinav, Anand
+                      <br />
+                      <span>CEO & Founder</span>
+                    </h2>
+                  </div>
                 </div>
-                <div className="details">
-                  <h2>Abhinav, Anand<br/><span>CEO & Founder</span></h2>
-                </div>
-              </div>
 
-              <div className="card">
-                <div className="imgBx">
-                  <img src="https://www.chaisuttabarindia.com/wp-content/uploads/2022/12/Manoj-More-Chai-Sutta-Bar.jpg" alt="images"/>
+                <div className="card">
+                  <div className="imgBx">
+                    <img
+                      src="https://www.chaisuttabarindia.com/wp-content/uploads/2022/12/Manoj-More-Chai-Sutta-Bar.jpg"
+                      alt="images"
+                    />
+                  </div>
+                  <div className="details">
+                    <h2>
+                      Anand Nayak
+                      <br />
+                      <span>Co-Founder</span>
+                    </h2>
+                  </div>
                 </div>
-                <div className="details">
-                  <h2>Anand Nayak<br/><span>Co-Founder</span></h2>
-                </div>
-              </div>
               </div>
             </div>
 
+    
+
+            <Faq faqs={c_fAQ} />
 
             <div className="nearby-sec">
               <div className="container">
-                <div className="sec-title"><h2 className="">{StaticData.NearStoretext}</h2></div>
+                <div className="sec-title">
+                  <h2 className="">{StaticData.NearStoretext}</h2>
+                </div>
                 <div className="nearby-sec-inner">
-                  {yextDisplayCoordinate || cityCoordinate || displayCoordinate ?
+                  {yextDisplayCoordinate ||
+                  cityCoordinate ||
+                  displayCoordinate ? (
                     <Nearby externalApiData={externalApiData} />
-                    : ''}
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
-
             </div>
-
           </PageLayout>
         </AnalyticsScopeProvider>
       </AnalyticsProvider>
