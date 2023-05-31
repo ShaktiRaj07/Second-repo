@@ -87,8 +87,8 @@ const SearchLayout = (props: any): JSX.Element => {
       );
     }
     params1 = {
-      latitude: 54.9191,
-      longitude: -1.3692,
+      latitude: centerLatitude,
+      longitude: centerLongitude,
     };
     SetNewparam(params1);
     // mapzoom=8;
@@ -227,7 +227,10 @@ const SearchLayout = (props: any): JSX.Element => {
     if (firstTimeRunners) {
       firstTimeRunners = false;
       // searchActions.resetFacets();
-      FirstLoad();
+      
+      /* On / off this to load unload locator page listing control  */
+
+      // FirstLoad(); 
     }
   }, []);
 
@@ -273,10 +276,10 @@ const SearchLayout = (props: any): JSX.Element => {
               params={params1}
               searchOnSelect={true}
               searchFields={[
-                {
-                  entityType: "location",
-                  fieldApiName: "address.line1",
-                },
+                // {
+                //   entityType: "location",
+                //   fieldApiName: "address.line1",
+                // },
                 {
                   entityType: "location",
                   fieldApiName: "address.postalCode",
@@ -284,6 +287,22 @@ const SearchLayout = (props: any): JSX.Element => {
                 {
                   entityType: "location",
                   fieldApiName: "name",
+                },
+                {
+                  entityType: "location",
+                  fieldApiName: "address.countryCode",
+                },
+                {
+                  entityType: "location",
+                  fieldApiName: "address.city",
+                },
+                {
+                  entityType: "location",
+                  fieldApiName: "address.line1",
+                },
+                {
+                  entityType: "location",
+                  fieldApiName: "address.region",
                 },
 
                 // {
@@ -366,7 +385,7 @@ const SearchLayout = (props: any): JSX.Element => {
           <PerfectScrollbar>
             <div>
               <VerticalResults
-                displayAllOnNoResults={false}
+                displayAllOnNoResults={true}
                 CardComponent={LocationCard}
                 locationResults={locationinbuit}
                 customCssClasses={{

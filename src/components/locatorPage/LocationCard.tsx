@@ -8,6 +8,8 @@ import Address from "../commons/Address";
 import OpenClose from "../commons/openClose";
 import { StaticData } from "../../../sites-global/staticData";
 import { Link } from "@yext/pages/components";
+import { PhoneCallEvent } from "@yext/analytics";
+import { Addresssvg } from "../../../sites-global/global";
 
 const metersToMiles = (meters: number) => {
   const miles = meters * 0.000621371;
@@ -98,7 +100,9 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
             </div>
 
             <div className="icon-row content-col address-with-availablity notHighlight">
+
               <Address address={address} />
+              <div className="icon-row"><div className="icon ml-[-24px]" > <img className=" " src="/src/images/phone.svg" width="22" height="22" alt="phonesvg" /></div><div className="content-col"><a id="address" className=" location-phn" href="tel:+919764315487">+919764315487</a></div></div>
               {result.rawData.hours ? (
                 <>
                   <div className="mt-2">
@@ -109,7 +113,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                           {" "}
                           <img
                             className=" "
-                            src={timesvg}
+                            src={'timesvg'}
                             width="20"
                             height="20"
                             alt=""
@@ -169,12 +173,11 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                 </div>
               )}
             </div>
-
             <div className="button-bx">
               <Link
                 type="button"
                 href={`/${result.rawData.id}`}
-                className=" btn notHighlight "
+                className="btn notHighlightt"
                 data-ya-track={`viewStore -${result.rawData.name}`}
                 eventName={`viewStore -${result.rawData.name}`}
                 rel="noopener noreferrer"

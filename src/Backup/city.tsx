@@ -63,7 +63,7 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.yextDisplayCoordinate",
     ],
     localization: {
-      locales: ["en_GB"],
+      locales: ["en"],
       primary: false,
     },
   },

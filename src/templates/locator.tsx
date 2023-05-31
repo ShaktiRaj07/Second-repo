@@ -75,11 +75,10 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   document,
 }): HeadConfig => {
   return {
-    title: `${
-      document.c_meta_title
+    title: `${document.c_meta_title
         ? document.c_meta_title
-        : `Timber Merchants Near Me - Find MGM Timber Branch Locator Here.`
-    }`,
+        : `CSB Near Me - Find CSB Branch Locator Here.`
+      }`,
     charset: "UTF-8",
     viewport: "width=device-width, initial-scale=1",
     tags: [
@@ -87,11 +86,10 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "description",
-          content: `${
-            document.c_meta_description
+          content: `${document.c_meta_description
               ? document.c_meta_description
               : `View Timber Merchants near you today at MGM Timber. We stock high-quality, robust products at competitive rates.`
-          }`,
+            }`,
         },
       },
 
@@ -122,9 +120,8 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "link",
         attributes: {
           rel: "canonical",
-          href: `${
-            document._site?.c_canonical ? document.c_canonical : stagingBaseurl
-          }`,
+          href: `${document._site?.c_canonical ? document.c_canonical : stagingBaseurl
+            }`,
         },
       },
 
@@ -132,22 +129,20 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           property: "og:description",
-          content: `${
-            document.c_meta_description
+          content: `${document.c_meta_description
               ? document.c_meta_description
               : `View Timber Merchants near you today at MGM Timber. We stock high-quality, robust products at competitive rates.`
-          }`,
+            }`,
         },
       },
       {
         type: "meta",
         attributes: {
           property: "og:title",
-          content: `${
-            document.c_meta_title
+          content: `${document.c_meta_title
               ? document.c_meta_title
-              : `Timber Merchants Near Me - Find MGM Timber Branch Locator Here.`
-          }`,
+              : `CSB Near Me - Find CSB Branch Locator Here.`
+            }`,
         },
       },
       {
@@ -168,22 +163,20 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "twitter:description",
-          content: `${
-            document.c_meta_description
+          content: `${document.c_meta_description
               ? document.c_meta_description
               : `View Timber Merchants near you today at MGM Timber. We stock high-quality, robust products at competitive rates.`
-          }`,
+            }`,
         },
       },
       {
         type: "meta",
         attributes: {
           name: "twitter:title",
-          content: `${
-            document.c_meta_title
+          content: `${document.c_meta_title
               ? document.c_meta_title
               : `Timber Merchants Near Me - Find MGM Timber Branch Locator Here.`
-          }`,
+            }`,
         },
       },
       {
@@ -235,6 +228,20 @@ const Locator: Template<TemplateRenderProps> = ({ document, __meta }) => {
         {" "}
         <AnalyticsScopeProvider name={""}>
           <PageLayout _site={_site}>
+            <div className="module-wrapper module-u99U0wuYuR module-centered_hero">
+              <div className="module-content">
+                <div className="lp-param lp-param-u99U0wuYuR-image image-outer-container" style={{ backgroundImage: "URL('//dynl.mktgcdn.com/p-sandbox/DtlAmZz2b4LVcE0jyWfPOfX8maQR0OH5FT8bOmC7GEU/800x600.jpg')" }}>
+                  <div className="image-overlay" style={{padding: "11.95rem"}}>
+                    <div className="image-inner-container container">
+                      <h2 className="lp-param lp-param-u99U0wuYuR-headline headline">CSB'S NEAR ME</h2>
+                      <div className="ctas">
+                        <a className="btn primary-cta btn-primary btn-lg lp-param lp-param-u99U0wuYuR-buttonText lp-param-u99U0wuYuR-buttonUrl" href="https://boards.greenhouse.io/turtleheadtacos/jobs/132" role="button " data-pages-analytics="calltoactionclick">Have A Tea</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <SearchHeadlessProvider
               experienceKey={AnswerExperienceConfig.experienceKey}
               locale={AnswerExperienceConfig.locale}

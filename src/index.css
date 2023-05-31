@@ -1724,14 +1724,16 @@ nav[aria-label="Pagination"] button:disabled {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.about-inner-sec img:hover {
+/* .about-inner-sec img:hover {
   transform: scale(1);
   transition: 0.9s ease all;
   width: 100%;
-}
+} */
 
 .about-inner-sec img {
-  transition: 0.9s ease all;
+  /* transition: 0.9s ease all; */
+  width: 100%;
+  border-radius: 1rem;
 }
 
 .locator-map-block {
@@ -1779,7 +1781,7 @@ div#map_canvas {
   border-radius: 0px;
   color: #333;
   margin-bottom: 50px;
-  border-bottom: 2px dashed #CEE1F8;
+  border-bottom: 2px dashed #c81500;
   box-shadow: none;
 }
 
@@ -1894,3 +1896,278 @@ div#map_canvas {
     animation-iteration-count: 1;
  }
   
+ .about-sec .about-content .button-red {
+  /* width: 10.75rem; */
+  font-size: 1rem;
+  font-weight: 600;
+  /* line-height: 1.5rem; */
+}
+
+a.Link.button-red {
+  color: #fff;
+  background-color: #c81500;
+  border-color: #c81500;
+  font-family: "Alfa Slab One",cursive;
+}
+
+a.Link.button-red:hover {
+  background-color: #000000 !important;
+  border-color: #000000;
+    color: #ffffff !important;
+}
+
+.direction-button a {
+  color: #fff;
+  font-family: "Alfa Slab One",cursive !important;
+  background-color: #c81500 !important;
+  /* border-color: #c81500 !important; */
+  font-weight: 600 !important;
+  margin-top: 2rem;
+}
+.address-main-sec .button-bx .btn:hover{
+  background-color: #000000 !important;
+    color: #ffffff!important;
+}
+.nearby-card .button-bx .btn{
+  color: #fff;
+  font-family: "Alfa Slab One",cursive !important;
+  background-color: #c81500 !important;
+  border-color: #c81500 !important;
+  font-weight: 600 !important;
+
+}
+
+.nearby-card .button-bx .btn.notHighligh {
+  background: none !important;
+}
+
+.nearby-card .button-bx .btn {
+  width: auto !important;
+}
+
+h4.box-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  /* font-size: 1.25rem; */
+  line-height: 1.75rem;
+}
+
+.banner-text h1 {
+  margin-bottom: 0.95rem !important;
+  margin-top: 4rem !important;
+  font-family: "futura_ptdemi", Georgia, Arial, sans-serif;
+  font-size: 3rem !important;
+  font-weight: 600 !important;
+  color: #000000;
+}
+
+/* banner section css */
+
+.lp-param.lp-param-u99U0wuYuR-image.image-outer-container {
+  background-color: #212529;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  /* padding: 8rem; */
+}
+
+.image-overlay {
+  padding: 10.75rem 0;
+  color: #fff;
+  text-align: center;
+  background-color: rgba(0,0,0,0.3);
+  margin-top: -7rem;
+}
+.image-inner-container.container {
+  margin: 0 auto;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2.lp-param.lp-param-u99U0wuYuR-headline.headline {
+  margin-bottom: 0.5rem;
+  /* font-family: "Alfa Slab One"; */
+  font-weight: 600;
+  line-height: 1.2;
+  font-size: 3.875rem;
+}
+
+.hours-info {
+  font-size: 1.5rem;
+  color: #fff;
+  font-family: "Lato",sans-serif;
+  line-height: 1.5;
+}
+
+a.btn.primary-cta.btn-primary.btn-lg.lp-param.lp-param-u99U0wuYuR-buttonText.lp-param-u99U0wuYuR-buttonUrl {
+  padding: 0.53rem 1.8rem;
+  font-size: 1.3rem;
+  line-height: 3.5;
+  font-family:"Lato",sans-serif ;
+  color: #fff;
+  background-color: #c81500;
+  border-color: #c81500;
+  border-radius: 4px;
+}
+
+a.btn.primary-cta.btn-primary.btn-lg.lp-param.lp-param-u99U0wuYuR-buttonText.lp-param-u99U0wuYuR-buttonUrl:hover {
+  background-color: whitesmoke;
+  color: #c81500;
+}
+
+.module-wrapper.module-u99U0wuYuR.module-centered_hero {
+  padding-top: 4rem;
+}
+
+.location-information {
+  margin-top: 4rem;
+}
+
+.locator-map-block {
+    height: 104.6vh;
+}
+
+table.day-hrs .currentDay {
+  font-weight: 700;
+  color: #c81500;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.containerrr {
+  width: 100%;
+  height: 100%;
+  padding: 0px 8%;
+  margin-bottom: 5rem;
+}
+
+.containerrr h1 {
+  text-align: center;
+  padding-top: 4%;
+  margin-bottom: 60px;
+  font-weight: 500;
+  position: relative;
+  font-size: 31px !important;
+}
+
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-gap: 30px;
+}
+
+.service {
+  text-align: center;
+  padding: 25px 10px;
+  border: 2px solid whitesmoke;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  background: transparent;
+  transition: transform 0.5s, background 0.5s;
+}
+
+.service i {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+.service h2 {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.service:hover {
+  background: #000000;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.service:hover i {
+  color: #fff;
+}
+
+          /* Dm pages styling */
+
+.flex.flex-wrap.justify-center.items-start.-mx-2\.5.lg\:-mx-\[\.9375rem\] {
+  margin-top: 10rem;
+}
+
+.city-location {
+  border-radius: 5px;
+  box-shadow: 0px 30px 40px -20px hsl(229, 6%, 66%);
+  padding: 30px;
+  border-top: 3px solid hsl(0, 78%, 62%);
+}
+
+a.Link.btn {
+  color: #fff;
+  font-family: "Alfa Slab One",cursive !important;
+  background-color: #c81500 !important;
+  border-color: #c81500 !important;
+  font-weight: 600 !important;
+}
+
+a.Link.btn.notHighligh {
+  color: #fff!important;
+  text-decoration: none!important;
+}
+
+.hours-info{
+
+  color: #222 !important;
+  font-size: 15px;
+  font-family: "Alfa Slab One";   
+  background: white;
+  padding: 2px;
+}
+
+.search-bx .search-btn {
+  background-color: #000000 !important;
+}
+.search-bx .search-btn:hover {
+  background-color: grey !important;
+}
+
+/* a.Link.btn.notHighligh:hover{
+  color:#000000 !important;
+  background-color: #fff !important;
+  border: 1px solid #000000 !important;
+} */
+a.Link.btn.notHighligh {
+  color: #000000 !important;
+  background-color: #FFF !important;
+  border: 1px solid #000000 !important;
+}
+
+
+a.Link.btn.notHighlightt:hover{
+    color:#000000 ;
+    background-color: #fff !important;
+    border: 1px solid #000000 !important;
+  }
+
+  .map-section .button-bx .btn {
+    background-color: #c81500;
+}
+.map-section .button-bx .btn:hover{
+  background-color: #fff !important;
+  color:#000000 !important;
+  border: 1px solid #000000 !important;
+}
+
+a#address {
+ 
+  text-decoration: none;
+}

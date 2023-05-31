@@ -21,7 +21,6 @@ const Header = (props: any) => {
           <nav className="nav-2">
             <span className="navmanage">{linkDoms}</span>
           </nav>
-          <h1 className="headingmain">Simply The Best</h1>
         </div>
       </header>
     </>

@@ -10,7 +10,9 @@ export default function Faq(faqdata: any) {
   // console.log('faqdata', faqdata)
   const [open, setOpen] = useState(0);
 
-  const handleOpen = (value: any) => {
+  const 
+  
+  handleOpen = (value: any) => {
     setOpen(open === value ? 0 : value);
   };
   return (

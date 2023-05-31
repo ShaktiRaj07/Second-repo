@@ -66,24 +66,16 @@ const Footer = (props: data) => {
             >
               <ul className="social-icons">
                 <li>
-                  <a className="facebook" href="#">
-                    <i className="fa fa-facebook">FB</i>
-                  </a>
+                 
                 </li>
                 <li>
-                  <a className="twitter" href="#">
-                    <i className="fa fa-twitter"></i>TW
-                  </a>
+                  
                 </li>
                 <li>
-                  <a className="dribbble" href="#">
-                    <i className="fa fa-dribbble"></i>DR
-                  </a>
+                  
                 </li>
                 <li>
-                  <a className="linkedin" href="#">
-                    <i className="fa fa-linkedin"></i>LKD
-                  </a>
+                  
                 </li>
               </ul>
             </div>

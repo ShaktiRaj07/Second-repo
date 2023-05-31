@@ -1,5 +1,5 @@
 {
-  "name": "pages-starter-react-locations",
+  "name": "Chai Sutta Bar Pages",
   "version": "0.0.0",
   "description": "An example repository to help users get started with React development on Yext Pages",
   "author": "lmarrie@yext.com",
@@ -20,6 +20,9 @@
   "dependencies": {
     "@css-modules-theme/core": "^2.3.0",
     "@emotion/react": "^11.10.5",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@googlemaps/react-wrapper": "^1.1.35",
     "@headlessui/react": "^1.6.6",
     "@material-tailwind/react": "^1.4.2",

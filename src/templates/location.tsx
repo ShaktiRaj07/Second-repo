@@ -119,7 +119,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   //   url += `${document.slug.toString()}.html`;
   // }
 
-  return document.id;
+  return document.id+".html";
 };
 /**
  * Defines a list of paths which will redirect to the path created by getPath.
@@ -145,7 +145,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   return {
     title: document.c_meta_title
       ? document.c_meta_title
-      : `${document.name} Store of MGM Timber`,
+      : `${document.name} Store of CSB`,
     charset: "UTF-8",
     viewport: "width=device-width, initial-scale=1",
     tags: [
@@ -153,11 +153,10 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "description",
-          content: `${
-            document.c_meta_description
-              ? document.c_meta_description
-              : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
-          }`,
+          content: `${document.c_meta_description
+            ? document.c_meta_description
+            : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
+            }`,
         },
       },
 
@@ -181,11 +180,9 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "link",
         attributes: {
           rel: "canonical",
-          href: `${
-            document._site?.c_canonical ? document?.c_canonical : stagingBaseurl
-          }${
-            document.slug ? document.slug : `${document.name.toLowerCase()}`
-          }.html`,
+          href: `${document._site?.c_canonical ? document?.c_canonical : stagingBaseurl
+            }${document.slug ? document.slug : `${document.name.toLowerCase()}`
+            }.html`,
         },
       },
 
@@ -193,11 +190,10 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           property: "og:description",
-          content: `${
-            document.c_meta_description
-              ? document.c_meta_description
-              : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
-          }`,
+          content: `${document.c_meta_description
+            ? document.c_meta_description
+            : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
+            }`,
         },
       },
       {
@@ -234,18 +230,17 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           name: "twitter:title",
           content: document.c_meta_title
             ? document.c_meta_title
-            : `${document.name} Store of MGM Timber`,
+            : `${document.name} Store of CSB`,
         },
       },
       {
         type: "meta",
         attributes: {
           name: "twitter:description",
-          content: `${
-            document.c_meta_description
-              ? document.c_meta_description
-              : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
-          }`,
+          content: `${document.c_meta_description
+            ? document.c_meta_description
+            : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
+            }`,
         },
       },
       /// twitter tag
@@ -256,15 +251,13 @@ type ExternalApiData = TemplateProps & { externalApiData: nearByLocation };
 export const transformProps: TransformProps<ExternalApiData> = async (
   data: any
 ) => {
-  var location = `${
-    data.document.yextDisplayCoordinate
-      ? data.document.yextDisplayCoordinate.latitude
-      : data.document.displayCoordinate.latitude
-  },${
-    data.document.yextDisplayCoordinate
+  var location = `${data.document.yextDisplayCoordinate
+    ? data.document.yextDisplayCoordinate.latitude
+    : data.document.displayCoordinate.latitude
+    },${data.document.yextDisplayCoordinate
       ? data.document.yextDisplayCoordinate.longitude
       : data.document.displayCoordinate.longitude
-  }`;
+    }`;
 
   const url = `${AnswerExperienceConfig.endpoints.verticalSearch}?experienceKey=${AnswerExperienceConfig.experienceKey}&api_key=${AnswerExperienceConfig.apiKey}&v=20220511&version=${AnswerExperienceConfig.experienceVersion}&locale=${AnswerExperienceConfig.locale}&location=${location}&verticalKey=${AnswerExperienceConfig.verticalKey}&limit=4&retrieveFacets=true&skipSpellCheck=false&sessionTrackingEnabled=true&source=STANDARD`;
   console.log(url);
@@ -306,7 +299,7 @@ const Location: Template<ExternalApiRenderData> = ({
     c_fAQ,
     c_ownersection,
   } = document;
-        console.log('c_fAQ', c_fAQ)
+  // console.log('c_fAQ', c_fAQ)
   let templateData = { document: document, __meta: __meta };
   let hoursSchema = [];
   let breadcrumbScheme = [];
@@ -425,8 +418,8 @@ const Location: Template<ExternalApiRenderData> = ({
   });
   let imageurl = photoGallery
     ? photoGallery.map((element: any) => {
-        return element.image.url;
-      })
+      return element.image.url;
+    })
     : null;
   console.log(document);
   let bannerimage = c_banner_image && c_banner_image.image.url;
@@ -450,9 +443,8 @@ const Location: Template<ExternalApiRenderData> = ({
           description: description,
           image: imageurl,
           telephone: mainPhone,
-          url: `${c_canonical ? c_canonical : stagingBaseurl}${
-            slug ? slug : `${name}`
-          }.html`,
+          url: `${c_canonical ? c_canonical : stagingBaseurl}${slug ? slug : `${name}`
+            }.html`,
         }}
       />
       <JsonLd<BreadcrumbList>
@@ -463,7 +455,7 @@ const Location: Template<ExternalApiRenderData> = ({
           itemListElement: breadcrumbScheme,
         }}
       />
-
+      
       <AnalyticsProvider
         templateData={templateData}
         enableDebugging={AnalyticsEnableDebugging}
@@ -472,14 +464,22 @@ const Location: Template<ExternalApiRenderData> = ({
         {" "}
         <AnalyticsScopeProvider name={""}>
           <PageLayout _site={_site}>
-            <div className="container">
-              <div className="banner-text banner-dark-bg justify-center text-center">
-                <h1 className="">{name}</h1>
-                <div className="openClosestatus detail-page closeing-div">
-                  <OpenClose timezone={timezone} hours={hours} />
+
+            <div className="module-wrapper module-u99U0wuYuR module-centered_hero">
+              <div className="module-content">
+                <div className="lp-param lp-param-u99U0wuYuR-image image-outer-container" style={{ backgroundImage: "URL('//dynl.mktgcdn.com/p-sandbox/DtlAmZz2b4LVcE0jyWfPOfX8maQR0OH5FT8bOmC7GEU/800x600.jpg')" }}>
+                  <div className="image-overlay"><div className="image-inner-container container">
+                    <h2 className="lp-param lp-param-u99U0wuYuR-headline headline">{name}</h2>
+                    <div className="lp-param lp-param-u99U0wuYuR-paragraph paragraph"> <OpenClose timezone={timezone} hours={hours} /></div>
+                    <div className="ctas">
+                      <a className="btn primary-cta btn-primary btn-lg lp-param lp-param-u99U0wuYuR-buttonText lp-param-u99U0wuYuR-buttonUrl" href="https://boards.greenhouse.io/turtleheadtacos/jobs/132" role="button " data-pages-analytics="calltoactionclick">Have A Tea</a>
+                    </div>
+                  </div>
+                  </div>
                 </div>
               </div>
             </div>
+
             <div className="location-information">
               <Contact
                 address={address}
@@ -519,10 +519,21 @@ const Location: Template<ExternalApiRenderData> = ({
                   />
                 </div>
               )}
+              {/* <div className="container">
+                <div className="banner-text banner-dark-bg justify-center text-center">
+                  <h1 className="">{name}</h1>
+                  <div className="openClosestatus detail-page closeing-div">
+                    <OpenClose timezone={timezone} hours={hours} />
+                  </div>
+                </div>
+              </div> */}
+
+
             </div>
             {/* Create new section  */}
 
             <About props={c_my_field} />
+
             <div className="containerr">
               <h1 className="head">Our Gallery</h1>
               {c_geniousGallery?.images.map((item: any) => {
@@ -534,6 +545,84 @@ const Location: Template<ExternalApiRenderData> = ({
                   </>
                 );
               })}
+            </div>
+
+            <div className="containerrr">
+              <h1>Our Services</h1>
+              <div className="row">
+                <div className="service">
+                  <i className="npm install @fortawesome/free-solid-svg-icons"></i>
+                  <h2>Web Design</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+                    quae?
+                  </p>
+                </div>
+                <div className="service">
+                  <i className="fas fa-chart-line"></i>
+                  <h2>Marketing</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+                    quae?
+                  </p>
+                </div>
+                <div className="service">
+                  <i className="fab fa-sketch"></i>
+                  <h2>Graphics</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+                    quae?
+                  </p>
+                </div>
+                <div className="service">
+                  <i className="fas fa-database"></i>
+                  <h2>Data Analysis</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+                    quae?
+                  </p>
+                </div>
+                <div className="service">
+                  <i className="fas fa-mobile-alt"></i>
+                  <h2>App Development</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+                    quae?
+                  </p>
+                </div>
+                <div className="service">
+                  <i className="fas fa-file-invoice"></i>
+                  <h2>Accounting</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+                    quae?
+                  </p>
+                </div>
+                <div className="service">
+                  <i className="fas fa-money-check-alt"></i>
+                  <h2>Payroll</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+                    quae?
+                  </p>
+                </div>
+                <div className="service">
+                  <i className="fas fa-network-wired"></i>
+                  <h2>Networking</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+                    quae?
+                  </p>
+                </div>
+                <div className="service">
+                  <i className="fas fa-laptop-code"></i>
+                  <h2>Web Development</h2>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+                    quae?
+                  </p>
+                </div>
+              </div>
             </div>
 
             {/* new section start */}
@@ -575,7 +664,7 @@ const Location: Template<ExternalApiRenderData> = ({
                 <div className="card">
                   <div className="imgBx">
                     <img
-                      src="https://www.chaisuttabarindia.com/wp-content/uploads/2022/12/Manoj-More-Chai-Sutta-Bar.jpg"
+                      src="https://pbs.twimg.com/media/FLB4j85agAAQhAg?format=jpg&name=large"
                       alt="images"
                     />
                   </div>
@@ -590,7 +679,7 @@ const Location: Template<ExternalApiRenderData> = ({
               </div>
             </div>
 
-    
+
 
             <Faq faqs={c_fAQ} />
 
@@ -601,8 +690,8 @@ const Location: Template<ExternalApiRenderData> = ({
                 </div>
                 <div className="nearby-sec-inner">
                   {yextDisplayCoordinate ||
-                  cityCoordinate ||
-                  displayCoordinate ? (
+                    cityCoordinate ||
+                    displayCoordinate ? (
                     <Nearby externalApiData={externalApiData} />
                   ) : (
                     ""

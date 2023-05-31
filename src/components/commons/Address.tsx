@@ -18,6 +18,16 @@ const Address = (props: any) => {
   return (
     <>
       <div className="address notHighlight ">
+        <div className="icon text-black relative">
+          {" "}
+          <img
+            className=" "
+            src={'http://localhost:5173/src/images/map.svg'}
+            width="20"
+            height="20"
+            alt={""}
+          />
+        </div>
         {/* <a href={gmapsLink} target="_blank" className="hover:underline"> */}
         <div>{address.line1}</div>
         {address.line2 && (
@@ -38,8 +48,11 @@ const Address = (props: any) => {
           </div>
         }
         {/* </a> */}
+        
       </div>
+
     </>
+    
   );
 };
 

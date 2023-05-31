@@ -110,7 +110,7 @@ function useOpenClose(hoursData: Week, timeZone: string) {
     return orderedWeek;
   };
 
-  //   console.log('hoursData', hoursData)
+    // console.log('hoursData', hoursData)
 
   const checkOpenClose = useCallback(() => {
     const now = new Date();
