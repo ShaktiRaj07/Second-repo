@@ -12,8 +12,7 @@ import {
 import BreadCrumbs from "../components/layouts/Breadcrumb";
 import { StaticData } from "../../sites-global/staticData";
 import { favicon, regionNames, stagingBaseurl } from "../../sites-global/global";
-import NewHeader from "../components/layouts/NewHeader";
-import NewFooter from "../components/layouts/NewFooter";
+
 
 /**
  * Required when Knowledge Graph data is used for a template.
@@ -222,9 +221,9 @@ const country: Template<TemplateRenderProps> = ({
     )
   }) : null;
 
-  let bannerimage = c_locatorBannerImage ? c_locatorBannerImage.map((element: any) => {
-    return element.url
-  }) : null;
+  // let bannerimage = c_locatorBannerImage ? c_locatorBannerImage.map((element: any) => {
+  //   return element.url
+  // }) : null;
 
   return (
     <>

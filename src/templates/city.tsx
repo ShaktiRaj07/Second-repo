@@ -24,13 +24,14 @@ import Address from "../components/commons/Address";
 import OpenClose from "../components/commons/openClose";
 import { Link } from "@yext/pages/components";
 
-var currentUrl = "";
+
 export const config: TemplateConfig = {
+
   stream: {
     $id: "city",
     filter: {
       entityTypes: ["ce_city"],
-      savedFilterIds: ["dm_stores-directory_address_region"],
+      savedFilterIds: ["dm_stores-directory_address_city"],
     },
     fields: [
       "id",
@@ -275,10 +276,10 @@ const City: Template<TemplateRenderProps> = ({
         </div>
         {entity.mainPhone ?
           <div className="icon-row">
-            {/* <div className="icon">
+            <div className="icon">
            <img className=" " src={mobilesvg} width="20" height="20"
                         alt="" />
-                        </div> */}
+                        </div>
             <div className="content-col">
               <a href={`tel:${entity.mainPhone}`}>{entity.mainPhone}</a>
             </div>
@@ -437,7 +438,7 @@ const City: Template<TemplateRenderProps> = ({
         <div className="container mx-auto">
           <div className="sec-title">
             <h2>
-            CSB stores in {name}
+            MGM stores in {name}
             </h2>
           </div>
           <div className="flex flex-wrap justify-center items-start -mx-2.5 lg:-mx-[.9375rem]">

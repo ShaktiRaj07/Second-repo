@@ -32,12 +32,12 @@ export const config: TemplateConfig = {
       "slug",
       "dm_directoryParents.name",
       "dm_directoryParents.slug",
-      "dm_directoryParents.dm_directoryChildrenCount",
+      "dm_directoryParents.dm_baseEntityCount",
       "dm_directoryParents.meta.entityType",
       "dm_directoryChildren.name",
       "dm_directoryChildren.address",
       "dm_directoryChildren.slug",
-      "dm_directoryChildren.dm_directoryChildrenCount",
+      "dm_directoryChildren.dm_baseEntityCount",
       "dm_directoryChildren.dm_directoryChildren.name",
       "dm_directoryChildren.dm_directoryChildren.id",
       "dm_directoryChildren.dm_directoryChildren.slug",
@@ -139,17 +139,17 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         },
       },
 
-      {
-        type: "link",
-        attributes: {
-          rel: "canonical",
-          href: `${
-            stagingBaseurl
-              ? stagingBaseurl + canonical + "/" + document.slug + ".html"
-              : "/" + document.slug + ".html"
-          }`,
-        },
-      },
+      // {
+      //   type: "link",
+      //   attributes: {
+      //     rel: "canonical",
+      //     href: `${
+      //       stagingBaseurl
+      //         ? stagingBaseurl + canonical + "/" + document.slug + ".html"
+      //         : "/" + document.slug + ".html"
+      //     }`,
+      //   },
+      // },
       //   // /og tags
 
       {
@@ -170,7 +170,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           content: `${
             document.c_meta_description
               ? document.c_meta_description
-              : `Find MGM Timber Store in ${document.name}. We stock high-quality, robust products at competitive rates.`
+              : `Find CSB Store in ${document.name}. We have high-quality, Tea's & Coffee at competitive rates.`
           }`,
         },
       },
@@ -243,7 +243,7 @@ const region: Template<TemplateRenderProps> = ({
         if (typeof entity.dm_directoryChildren != "undefined") {
           if (entity.dm_directoryChildrenCount == 1) {
             entity.dm_directoryChildren.map((res: any) => {
-              console.log(res, "res");
+              // console.log(res, "res");
               let detlslug1 = "";
 
               if (!res.slug) {
@@ -252,29 +252,30 @@ const region: Template<TemplateRenderProps> = ({
                 detlslug1 = `${slug}.html`;
               } else {
                 detlslug1 = `${res.slug.toString()}.html`;
+                console.log('detlslug1', detlslug1)
               }
 
               detlslug = detlslug1;
             });
           } else {
-            detlslug = "gb/" + slug + "/" + entity.slug + ".html";
+            detlslug = "in/" + slug + "/" + entity.slug + ".html";
+            console.log('detlslug', detlslug)
           }
         }
 
         return (
           <li className=" storelocation-category">
             <a key={entity.slug} href={stagingBaseurl + detlslug}>
-              {entity.name} ({entity.dm_directoryChildrenCount})
+              {entity.name} ({entity.dm_baseEntityCount})
             </a>
           </li>
         );
       })
     : null;
 
-  let bannerimage = c_banner_image && c_banner_image.image.url;
   return (
     <>
-      <PageLayout global={_site}>
+      
         <BreadCrumbs
           name={name}
           parents={dm_directoryParents}
@@ -291,7 +292,7 @@ const region: Template<TemplateRenderProps> = ({
             <ul className="region-list">{childrenDivs}</ul>
           </div>
         </div>
-      </PageLayout>
+  
     </>
   );
 };
