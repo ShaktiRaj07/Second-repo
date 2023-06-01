@@ -236,43 +236,45 @@ const region: Template<TemplateRenderProps> = ({
     dm_directoryParents,
     dm_directoryChildren,
   } = document;
-  const childrenDivs = dm_directoryChildren
-    ? dm_directoryChildren.map((entity: any) => {
-        let detlslug;
-
-        if (typeof entity.dm_directoryChildren != "undefined") {
-          if (entity.dm_directoryChildrenCount == 1) {
-            entity.dm_directoryChildren.map((res: any) => {
-              // console.log(res, "res");
-              let detlslug1 = "";
-
-              if (!res.slug) {
-                let slugString = res.id + "-" + res.name.toLowerCase();
-                let slug = slugString;
-                detlslug1 = `${slug}.html`;
-              } else {
-                detlslug1 = `${res.slug.toString()}.html`;
-                console.log('detlslug1', detlslug1)
-              }
-
-              detlslug = detlslug1;
-            });
-          } else {
-            detlslug = "in/" + slug + "/" + entity.slug + ".html";
-            console.log('detlslug', detlslug)
-          }
-        }
-
+  let newurl = "";
+  //   const links=document?.slug+"/"+document?.dm_directoryChildren?.slug;
+  // console.log('links', links)
+  const childrenDivs =
+    dm_directoryChildren &&
+    dm_directoryChildren?.map((entity: any) => {
+      if (entity?.dm_baseEntityCount == 1) {
+        newurl = entity.slug;
+        entity.dm_directoryChildren.map((detl: any) => {
+          console.log('detl', detl)
+          var string: any = detl.id.toString();          
+          newurl =  `/${string}.html`;         
+        })        
         return (
-          <li className=" storelocation-category">
-            <a key={entity.slug} href={stagingBaseurl + detlslug}>
+          <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4">
+            <a key={entity.slug} href={newurl} className="hover:text-red">
               {entity.name} ({entity.dm_baseEntityCount})
             </a>
-          </li>
+          </div>
         );
-      })
-    : null;
-
+      } else {
+        // console.log(dm_directoryParents&&dm_directoryParents[1]&&dm_directoryParents[1].slug,'jghhfhhhjhhhhh')
+        let slug =
+          "/" +
+          dm_directoryParents[1]?.slug +
+          "/" +
+          document.slug +
+          "/" +
+          entity.slug +
+          ".html";
+        return (
+          <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 test">
+            <a key={entity.slug} href={slug} className="hover:text-red">
+              {entity.name} ({entity.dm_baseEntityCount})
+            </a>
+          </div>
+        );
+      }
+    });
   return (
     <>
       

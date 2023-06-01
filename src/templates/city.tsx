@@ -1,9 +1,6 @@
 import * as React from "react";
-// import Banner from "../components/banner";
 import GetDirection from "../components/commons/GetDirection";
 import constant from "../constant";
-// import { stagingBaseUrl } from "../constants";
-// import bannerImage from "../images/banner.png"
 import "../index.css";
 var currentUrl = "";
 import {
@@ -18,7 +15,7 @@ import {
 } from "@yext/pages";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
 import { StaticData } from "../../sites-global/staticData";
-import { Addresssvg, favicon, mobilesvg, regionNames, stagingBaseurl } from "../../sites-global/global";
+import { Addresssvg, favicon, mobilesvg, regionNames } from "../../sites-global/global";
 import { JsonLd } from "react-schemaorg";
 import Address from "../components/commons/Address";
 import OpenClose from "../components/commons/openClose";
@@ -46,7 +43,6 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.slug",
       "dm_directoryChildren.name",
       "dm_directoryChildren.id",
-      //   "dm_directoryChildren.dm_directoryChildrenCount",
       "dm_directoryChildren.dm_baseEntityCount",
       "dm_directoryChildren.address",
       "dm_directoryChildren.hours",
@@ -140,16 +136,16 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
       //   },
       // },
       //   // /og tags
-      {
-        type: "meta",
-        attributes: {
-          property: "og:url",
-          content: `${stagingBaseurl
-            ? stagingBaseurl + canonical + "/" + document.slug + ".html"
-            : "/" + document.slug + ".html"
-            }`,
-        },
-      },
+      // {
+      //   type: "meta",
+      //   attributes: {
+      //     property: "og:url",
+      //     content: `${stagingBaseurl
+      //       ? stagingBaseurl + canonical + "/" + document.slug + ".html"
+      //       : "/" + document.slug + ".html"
+      //       }`,
+      //   },
+      // },
       {
         type: "meta",
         attributes: {
@@ -211,6 +207,7 @@ const City: Template<TemplateRenderProps> = ({
     c_metaTitle,
     _site,
   } = document;
+  console.log('document', document)
   var address;
   var c_companyrn;
   var c_footerLinks;
@@ -243,6 +240,7 @@ const City: Template<TemplateRenderProps> = ({
     }
     // let key: any = Object.keys(entity.hours)[0];
     var url = "";
+    var id : any = entity.id;
     var name: any = entity.name.toLowerCase();
     var region: any = entity.address.region.toLowerCase();
     var initialregion: any = region.toString();
@@ -254,7 +252,8 @@ const City: Template<TemplateRenderProps> = ({
     let result: any = string.replaceAll(" ", "-");
     // let newlink: any = 
     if (!entity.slug) {
-      url = document.slug + "/" + `${result}.html`;
+      url =`/${id}.html`;
+      console.log('url', url)
     } else {
       url = `/${entity.slug.toString()}.html`;
     }
@@ -380,6 +379,7 @@ const City: Template<TemplateRenderProps> = ({
     }
     else if (i.meta.entityType.id == 'ce_region') {
       url = `${url}/${i.slug}/${document.slug.toString()}.html`
+      console.log('url', url)
     }
   })
   let breadcrumbScheme: any = [];
@@ -392,7 +392,7 @@ const City: Template<TemplateRenderProps> = ({
           "@type": "ListItem",
           position: index,
           item: {
-            "@id": `${constant.stagingBaseurl}${i.slug}`,
+            "@id": `${constant}${i.slug}`,
             name: i.name,
           },
         });
@@ -403,7 +403,7 @@ const City: Template<TemplateRenderProps> = ({
     "@type": "ListItem",
     position: currentIndex + 1,
     item: {
-      "@id": `${constant.stagingBaseurl}/${document.slug.toString()}.html`,
+      "@id": `${constant}/${document.slug.toString()}.html`,
       name: document.name,
     },
   });
@@ -438,7 +438,7 @@ const City: Template<TemplateRenderProps> = ({
         <div className="container mx-auto">
           <div className="sec-title">
             <h2>
-            MGM stores in {name}
+            CSB Cafe in {name}
             </h2>
           </div>
           <div className="flex flex-wrap justify-center items-start -mx-2.5 lg:-mx-[.9375rem]">
