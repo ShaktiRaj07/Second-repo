@@ -1,8 +1,10 @@
 import * as React from "react";
 import ApiCall from "../../Apis/ApiCall";
 import Address from "../commons/Address";
+import "../../index.css";
 import GetDirection from "../commons/GetDirection";
 import OpenClose from "../commons/openClose";
+import { StaticData } from "../../../sites-global/staticData";
 import timesvg from "../../images/watch-icn.svg";
 import mapimage from "../../images/map.svg";
 import Phonesvg from "../../images/phone.svg";
@@ -48,21 +50,26 @@ export default function Nearby(props: any) {
         }}
       > */}
       {neabyData.map((location: any, index: Number) => {
-        // let url = "";
-        // var name: any = location.data.name?.toLowerCase();
-        // var region: any = location.data.address.region?.toLowerCase();
-        // var initialregion: any = region.toString();
-        // var finalregion: any = initialregion.replaceAll(" ", "-");
-        // var city: any = location.data.address.city?.toLowerCase();
-        // var initialrcity: any = city.toString();
-        // var finalcity: any = initialrcity.replaceAll(" ", "-");
-        // var string: any = name.toString();
-        // let result1: any = string.replaceAll(" ", "-");
-        // if (!location.data.slug) {
-        //   url = `/${location.data.id}-${result1}.html`;
-        // } else {
-        //   url = `/${location.data.slug.toString()}.html`;
-        // }
+        let url = "";
+        var name: any = location.data.name?.toLowerCase();
+        var country : any = location.data.address.countryCode?.toLowerCase();
+        var initialcountry : any = country.toString();
+        var finalcountry : any = initialcountry.replaceAll(" ", "-");        
+        var region: any = location.data.address.region?.toLowerCase();
+        var initialregion: any = region.toString();
+        var finalregion: any = initialregion.replaceAll(" ", "-");
+        var city: any = location.data.address.city?.toLowerCase();
+        var initialrcity: any = city.toString();
+        var finalcity: any = initialrcity.replaceAll(" ", "-");
+        var string: any = name.toString();
+        let result1: any = string.replaceAll(" ", "-");
+
+        let newURl= finalcountry + "/" + finalregion + "/" + finalcity + "/" + result1 + ".html";
+        if (!location.data.slug) {
+          url = `${newURl}`;
+        } else {
+          url = `${newURl}`;
+        }
 
         if (index > 0) {
           return (
@@ -73,7 +80,7 @@ export default function Nearby(props: any) {
                   <h2>
                     <Link
                       className="inline-block notHighlight"
-                      href={`/${location.data.id}`}
+                      href={`/${url}`}
                       data-ya-track={`${location.data.name}`}
                       eventName={`${location.data.name}`}
                       rel="noopener noreferrer"
@@ -82,8 +89,13 @@ export default function Nearby(props: any) {
                     </Link>
                   </h2>
                 </div>
+                <div className="meter">    
+                    {metersToMiles(location.distance)} <span>{StaticData.miles}</span>
+                  </div>
                 <div className="icon-row content-col">
+                
                   <Address address={location.data.address} />
+                  
                 </div>
                 <div className="icon-row closeing-div">
                   {location.data.hours ? (
@@ -123,7 +135,7 @@ export default function Nearby(props: any) {
                 <div className="button-bx">
                   <Link
                     className="btn"
-                    href={`/${location.data.id}`}
+                    href={`/${url}`}
                     data-ya-track={`viewstore-${location.data.name}`}
                     eventName={`viewstore-${location.data.name}`}
                     rel="noopener noreferrer"

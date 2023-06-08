@@ -252,12 +252,13 @@ const City: Template<TemplateRenderProps> = ({
     let result: any = string.replaceAll(" ", "-");
     // let newlink: any = 
     if (!entity.slug) {
-      url =`/${id}.html`;
-      console.log('url', url)
+      url =  city.toLowerCase() + "/" + `${id}.html`;
+      console.log('citypage', url)
     } else {
-      url = `/${entity.slug.toString()}.html`;
+      url = `${entity.slug.toString()}.html`;
+      
     }
-
+    
     return (
 
       <div className="nearby-card">
@@ -314,7 +315,7 @@ const City: Template<TemplateRenderProps> = ({
   });
   function getDirectionUrl(entitiy: any) {
     var origin: any = null;
-    if (entitiy.address.city) {
+    if (entitiy.address.city.toLowerCase()) {
       origin = entitiy.address.city;
     } else if (entitiy.address.region) {
       origin = entitiy.address.region;
@@ -379,7 +380,7 @@ const City: Template<TemplateRenderProps> = ({
     }
     else if (i.meta.entityType.id == 'ce_region') {
       url = `${url}/${i.slug}/${document.slug.toString()}.html`
-      console.log('url', url)
+      console.log('urllast wala', url)
     }
   })
   let breadcrumbScheme: any = [];

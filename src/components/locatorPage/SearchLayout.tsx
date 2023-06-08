@@ -230,7 +230,7 @@ const SearchLayout = (props: any): JSX.Element => {
       
       /* On / off this to load unload locator page listing control  */
 
-      // FirstLoad(); 
+      FirstLoad(); 
     }
   }, []);
 
@@ -387,7 +387,7 @@ const SearchLayout = (props: any): JSX.Element => {
               <VerticalResults
                 displayAllOnNoResults={true}
                 CardComponent={LocationCard}
-                locationResults={locationinbuit}
+                locationResults={locationResults}
                 customCssClasses={{
                   container:
                     "result-list flex flex-col scroll-smooth  overflow-auto",

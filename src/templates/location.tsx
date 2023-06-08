@@ -84,6 +84,9 @@ export const config: TemplateConfig = {
       "c_fAQ.question",
       "c_fAQ.answer",
       "c_ownersection",
+      "dm_directoryParents.name",
+      "dm_directoryParents.slug",
+      "dm_directoryParents.meta.entityType",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -104,22 +107,24 @@ export const config: TemplateConfig = {
  * take on the form: featureName/entityId
  */
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  // var url = "";
-  // var name: any = document.name.toLowerCase();
-  // var string: any = name.toString();;
-  // let result: any = string.replaceAll(" ", "-");
-  // document.dm_directoryParents.map((result: any, i: Number) => {
-  //   if (i > 0) {
-  //     url += result.slug + "/"
-  //   }
-  // })
-  // if (!document.slug) {
-  //   url += `${result}.html`;
-  // } else {
-  //   url += `${document.slug.toString()}.html`;
-  // }
+  var url = "";
+  var name: any = document.id.toLowerCase();
+  var string: any = name.toString();;
+  let result: any = string.replaceAll(" ", "-");
+  document?.dm_directoryParents?.map((result: any, i: Number) => {
+    if (i > 0) {
+      url += result.slug + "/"
+    }
+  })
+  if (!document.slug) {
+    url += `${result}.html`;
+  } else {
+    url += `${document.slug.toString()}.html`;
+  }
 
-  return document.id+".html";
+  // return document.id+".html";
+
+  return url;
 };
 /**
  * Defines a list of paths which will redirect to the path created by getPath.

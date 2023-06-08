@@ -119,8 +119,9 @@ function UnwrappedGoogleMaps({
 
   const refLocationResults = useRef({});
 
-  const locationResults =
-    useSearchState((state) => state.vertical?.results) || [];
+  // const locationResults =
+  //   useSearchState((state) => state.vertical?.results) || [];
+  const locationResults = useFetchResults() || [];
   refLocationResults.current = locationResults;
 
   locationResults.length > 0
@@ -477,20 +478,26 @@ function UnwrappedGoogleMaps({
     info = true;
     let url = "";
 
-    // const name: any = result.rawData.name?.toLowerCase();
-    // const region: any = result.rawData.address.region?.toLowerCase();
-    // const initialregion: any = region.toString();
-    // const finalregion: any = initialregion.replaceAll(" ", "-");
-    // const city: any = result.rawData.address.city?.toLowerCase();
-    // const initialrcity: any = city.toString();
-    // const finalcity: any = initialrcity.replaceAll(" ", "-");
-    // const string1: any = name.toString();
-    // const result1: any = string1.replaceAll(" ", "-");
-    // if (!result.rawData.slug) {
-    //   url = `${result.rawData.id}-${result1}.html`;
-    // } else {
-    //   url = `${result.rawData.slug.toString()}.html`;
-    // }
+    const name: any = result.rawData.name?.toLowerCase();
+    const country : any = result.rawData.address.countryCode?.toLowerCase();
+    const initialcountry : any = country.toString();
+    const finalcountry : any = initialcountry.replaceAll(" ", "-");
+    const region: any = result.rawData.address.region?.toLowerCase();
+    const initialregion: any = region.toString();
+    const finalregion: any = initialregion.replaceAll(" ", "-");
+    const city: any = result.rawData.address.city?.toLowerCase();
+    const initialrcity: any = city.toString();
+    const finalcity: any = initialrcity.replaceAll(" ", "-");
+    const string1: any = name.toString();
+    const result1: any = string1.replaceAll(" ", "-");
+
+    let newURl= finalcountry + "/" + finalregion + "/" + finalcity + "/" + result1 + ".html";
+    
+    if (!result.rawData.slug) {
+      url = `${newURl}`;
+    } else {
+      url = `${newURl}`;
+    }
 
     const MarkerContent = (
       <>
@@ -502,7 +509,7 @@ function UnwrappedGoogleMaps({
             <h2>
               <a
                 className="inline-block notHighlight"
-                href={`/${result.rawData.id}`}
+                href={`/${url}`}
               >
                 {result.rawData.name}
               </a>
@@ -519,16 +526,16 @@ function UnwrappedGoogleMaps({
               ""
             )}
           </div>
-          {/* {result.rawData.mainPhone?
+          {result.rawData.mainPhone?
     <div className="icon-row">
       <div className="icon"> <img className=" " src={Phonesvg} width="20" height="20" alt="" />
       </div>
       <div className="content-col">
-        <h6>Telephone</h6>
+        {/* <h6>Telephone</h6> */}
         <a id="address" className="notHighlight" href={`tel:${result.rawData.mainPhone}`}>
           {result.rawData.mainPhone}</a>
       </div>
-    </div>:''} */}
+    </div>:''}
 
           {result.rawData.hours && result.rawData.hours.reopenDate ? (
             ""
@@ -564,7 +571,7 @@ function UnwrappedGoogleMaps({
           )}
         </div>
         <div className="button-bx !ml-4 !mb-0">
-          <a type="button" href={`/${result.rawData.id}`} className="btn">
+          <a type="button" href={`/${url}`} className="btn">
             {/* <div dangerouslySetInnerHTML={{__html: View_Store}}/> */}
             {StaticData.StoreDetailbtn}
           </a>

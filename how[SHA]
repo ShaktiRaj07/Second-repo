@@ -1,0 +1,202 @@
+[1mdiff --git a/src/templates/State.tsx b/src/templates/State.tsx[m
+[1mindex 353adc6..20698c3 100644[m
+[1m--- a/src/templates/State.tsx[m
+[1m+++ b/src/templates/State.tsx[m
+[36m@@ -236,45 +236,43 @@[m [mconst region: Template<TemplateRenderProps> = ({[m
+     dm_directoryParents,[m
+     dm_directoryChildren,[m
+   } = document;[m
+[31m-  let newurl = "";[m
+[31m-  //   const links=document?.slug+"/"+document?.dm_directoryChildren?.slug;[m
+[31m-  // console.log('links', links)[m
+[31m-  const childrenDivs =[m
+[31m-    dm_directoryChildren &&[m
+[31m-    dm_directoryChildren?.map((entity: any) => {[m
+[31m-      if (entity?.dm_baseEntityCount == 1) {[m
+[31m-        newurl = entity.slug;[m
+[31m-        entity.dm_directoryChildren.map((detl: any) => {[m
+[31m-          console.log('detl', detl)[m
+[31m-          var string: any = detl.id.toString();          [m
+[31m-          newurl =  `/${string}.html`;         [m
+[31m-        })        [m
+[31m-        return ([m
+[31m-          <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4">[m
+[31m-            <a key={entity.slug} href={newurl} className="hover:text-red">[m
+[31m-              {entity.name} ({entity.dm_baseEntityCount})[m
+[31m-            </a>[m
+[31m-          </div>[m
+[31m-        );[m
+[31m-      } else {[m
+[31m-        // console.log(dm_directoryParents&&dm_directoryParents[1]&&dm_directoryParents[1].slug,'jghhfhhhjhhhhh')[m
+[31m-        let slug =[m
+[31m-          "/" +[m
+[31m-          dm_directoryParents[1]?.slug +[m
+[31m-          "/" +[m
+[31m-          document.slug +[m
+[31m-          "/" +[m
+[31m-          entity.slug +[m
+[31m-          ".html";[m
+[32m+[m[32m  const childrenDivs = dm_directoryChildren[m
+[32m+[m[32m    ? dm_directoryChildren.map((entity: any) => {[m
+[32m+[m[32m        let detlslug;[m
+[32m+[m
+[32m+[m[32m        if (typeof entity.dm_directoryChildren != "undefined") {[m
+[32m+[m[32m          if (entity.dm_directoryChildrenCount == 1) {[m
+[32m+[m[32m            entity.dm_directoryChildren.map((res: any) => {[m
+[32m+[m[32m              // console.log(res, "res");[m
+[32m+[m[32m              let detlslug1 = "";[m
+[32m+[m
+[32m+[m[32m              if (!res.slug) {[m
+[32m+[m[32m                let slugString = res.id + "-" + res.name.toLowerCase();[m
+[32m+[m[32m                let slug = slugString;[m
+[32m+[m[32m                detlslug1 = `${slug}.html`;[m
+[32m+[m[32m              } else {[m
+[32m+[m[32m                detlslug1 = `${res.slug.toString()}.html`;[m
+[32m+[m[32m                console.log('detlslug1', detlslug1)[m
+[32m+[m[32m              }[m
+[32m+[m
+[32m+[m[32m              detlslug = detlslug1;[m
+[32m+[m[32m            });[m
+[32m+[m[32m          } else {[m
+[32m+[m[32m            detlslug = "in/" + slug + "/" + entity.slug + ".html";[m
+[32m+[m[32m            console.log('detlslug', detlslug)[m
+[32m+[m[32m          }[m
+[32m+[m[32m        }[m
+[32m+[m
+         return ([m
+[31m-          <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 test">[m
+[31m-            <a key={entity.slug} href={slug} className="hover:text-red">[m
+[32m+[m[32m          <li className=" storelocation-category">[m
+[32m+[m[32m            <a key={entity.slug} href={stagingBaseurl + detlslug}>[m
+               {entity.name} ({entity.dm_baseEntityCount})[m
+             </a>[m
+[31m-          </div>[m
+[32m+[m[32m          </li>[m
+         );[m
+[31m-      }[m
+[31m-    });[m
+[32m+[m[32m      })[m
+[32m+[m[32m    : null;[m
+[32m+[m
+   return ([m
+     <>[m
+       [m
+[1mdiff --git a/src/templates/city.tsx b/src/templates/city.tsx[m
+[1mindex 1d33377..d1ad5e3 100644[m
+[1m--- a/src/templates/city.tsx[m
+[1m+++ b/src/templates/city.tsx[m
+[36m@@ -1,6 +1,9 @@[m
+ import * as React from "react";[m
+[32m+[m[32m// import Banner from "../components/banner";[m
+ import GetDirection from "../components/commons/GetDirection";[m
+ import constant from "../constant";[m
+[32m+[m[32m// import { stagingBaseUrl } from "../constants";[m
+[32m+[m[32m// import bannerImage from "../images/banner.png"[m
+ import "../index.css";[m
+ var currentUrl = "";[m
+ import {[m
+[36m@@ -15,7 +18,7 @@[m [mimport {[m
+ } from "@yext/pages";[m
+ import BreadCrumbs from "../components/layouts/Breadcrumb";[m
+ import { StaticData } from "../../sites-global/staticData";[m
+[31m-import { Addresssvg, favicon, mobilesvg, regionNames } from "../../sites-global/global";[m
+[32m+[m[32mimport { Addresssvg, favicon, mobilesvg, regionNames, stagingBaseurl } from "../../sites-global/global";[m
+ import { JsonLd } from "react-schemaorg";[m
+ import Address from "../components/commons/Address";[m
+ import OpenClose from "../components/commons/openClose";[m
+[36m@@ -43,6 +46,7 @@[m [mexport const config: TemplateConfig = {[m
+       "dm_directoryChildren.slug",[m
+       "dm_directoryChildren.name",[m
+       "dm_directoryChildren.id",[m
+[32m+[m[32m      //   "dm_directoryChildren.dm_directoryChildrenCount",[m
+       "dm_directoryChildren.dm_baseEntityCount",[m
+       "dm_directoryChildren.address",[m
+       "dm_directoryChildren.hours",[m
+[36m@@ -136,16 +140,16 @@[m [mexport const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({[m
+       //   },[m
+       // },[m
+       //   // /og tags[m
+[31m-      // {[m
+[31m-      //   type: "meta",[m
+[31m-      //   attributes: {[m
+[31m-      //     property: "og:url",[m
+[31m-      //     content: `${stagingBaseurl[m
+[31m-      //       ? stagingBaseurl + canonical + "/" + document.slug + ".html"[m
+[31m-      //       : "/" + document.slug + ".html"[m
+[31m-      //       }`,[m
+[31m-      //   },[m
+[31m-      // },[m
+[32m+[m[32m      {[m
+[32m+[m[32m        type: "meta",[m
+[32m+[m[32m        attributes: {[m
+[32m+[m[32m          property: "og:url",[m
+[32m+[m[32m          content: `${stagingBaseurl[m
+[32m+[m[32m            ? stagingBaseurl + canonical + "/" + document.slug + ".html"[m
+[32m+[m[32m            : "/" + document.slug + ".html"[m
+[32m+[m[32m            }`,[m
+[32m+[m[32m        },[m
+[32m+[m[32m      },[m
+       {[m
+         type: "meta",[m
+         attributes: {[m
+[36m@@ -207,7 +211,6 @@[m [mconst City: Template<TemplateRenderProps> = ({[m
+     c_metaTitle,[m
+     _site,[m
+   } = document;[m
+[31m-  console.log('document', document)[m
+   var address;[m
+   var c_companyrn;[m
+   var c_footerLinks;[m
+[36m@@ -240,7 +243,6 @@[m [mconst City: Template<TemplateRenderProps> = ({[m
+     }[m
+     // let key: any = Object.keys(entity.hours)[0];[m
+     var url = "";[m
+[31m-    var id : any = entity.id;[m
+     var name: any = entity.name.toLowerCase();[m
+     var region: any = entity.address.region.toLowerCase();[m
+     var initialregion: any = region.toString();[m
+[36m@@ -252,8 +254,7 @@[m [mconst City: Template<TemplateRenderProps> = ({[m
+     let result: any = string.replaceAll(" ", "-");[m
+     // let newlink: any = [m
+     if (!entity.slug) {[m
+[31m-      url =`/${id}.html`;[m
+[31m-      console.log('url', url)[m
+[32m+[m[32m      url = document.slug + "/" + `${result}.html`;[m
+     } else {[m
+       url = `/${entity.slug.toString()}.html`;[m
+     }[m
+[36m@@ -379,7 +380,6 @@[m [mconst City: Template<TemplateRenderProps> = ({[m
+     }[m
+     else if (i.meta.entityType.id == 'ce_region') {[m
+       url = `${url}/${i.slug}/${document.slug.toString()}.html`[m
+[31m-      console.log('url', url)[m
+     }[m
+   })[m
+   let breadcrumbScheme: any = [];[m
+[36m@@ -392,7 +392,7 @@[m [mconst City: Template<TemplateRenderProps> = ({[m
+           "@type": "ListItem",[m
+           position: index,[m
+           item: {[m
+[31m-            "@id": `${constant}${i.slug}`,[m
+[32m+[m[32m            "@id": `${constant.stagingBaseurl}${i.slug}`,[m
+             name: i.name,[m
+           },[m
+         });[m
+[36m@@ -403,7 +403,7 @@[m [mconst City: Template<TemplateRenderProps> = ({[m
+     "@type": "ListItem",[m
+     position: currentIndex + 1,[m
+     item: {[m
+[31m-      "@id": `${constant}/${document.slug.toString()}.html`,[m
+[32m+[m[32m      "@id": `${constant.stagingBaseurl}/${document.slug.toString()}.html`,[m
+       name: document.name,[m
+     },[m
+   });[m
+[36m@@ -438,7 +438,7 @@[m [mconst City: Template<TemplateRenderProps> = ({[m
+         <div className="container mx-auto">[m
+           <div className="sec-title">[m
+             <h2>[m
+[31m-            CSB Cafe in {name}[m
+[32m+[m[32m            MGM stores in {name}[m
+             </h2>[m
+           </div>[m
+           <div className="flex flex-wrap justify-center items-start -mx-2.5 lg:-mx-[.9375rem]">[m

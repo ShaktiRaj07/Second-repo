@@ -4,6 +4,7 @@ import { useSearchState } from "@yext/search-headless-react";
 let mapLocations: any = [];
 const useFetchResults = () => {
   const locationResults = useSearchState((s) => s.vertical.results) || [];
+  // const locationResults = useFetchResults() || [];
   const Alternateresult =
     useSearchState(
       (s) => s.vertical.noResults?.allResultsForVertical.results

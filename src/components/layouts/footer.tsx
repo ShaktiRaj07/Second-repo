@@ -7,11 +7,11 @@ type data = {
 
 const Footer = (props: data) => {
   const { _site } = props;
-  console.log("footer", _site);
+  // console.log("footer", _site);
 
   return (
     <>
-      <footer className="site-footer">
+      <footer className="site-footer inline-block w-full">
         <div className="container">
           <div className="row" style={{ display: "contents" }}>
             <div className="col-sm-12 col-md-6" style={{ width: "52%" }}>
@@ -36,7 +36,7 @@ const Footer = (props: data) => {
 
             <div
               className="col-xs-6 col-md-3"
-              style={{ float: "right", width: "13%" }}
+              style={{ float: "right", width: "13%", marginBottom:"1rem" }}
             >
               <h6>{_site.c_thirdHeading}</h6>
               <ul className="footer-links">

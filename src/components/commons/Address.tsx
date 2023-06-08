@@ -1,5 +1,6 @@
 import * as React from "react";
 import { regionNames } from "../../../sites-global/global";
+import { StaticData } from "../../../sites-global/staticData";
 
 const Address = (props: any) => {
   const { address } = props;

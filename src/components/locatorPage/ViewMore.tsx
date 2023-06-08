@@ -19,13 +19,15 @@ export default function ViewMore(props: viewMoreProps): JSX.Element | null {
     searchAction.setOffset(newOffset);
     searchAction.executeVerticalQuery();
   };
-
+  
   const maxPageCount = Math.ceil(numResults / limit);
   if (maxPageCount <= 1) {
     return null;
   }
+  console.log('numResults', numResults)
   const pageNumber = offset / limit + 1;
-
+// console.log('offset', offset)
+// console.log('limit', limit)
   return (
     <>
       <div>
@@ -37,6 +39,7 @@ export default function ViewMore(props: viewMoreProps): JSX.Element | null {
                 id={idName}
                 onClick={() => executeSearchWithNewOffset(offset + limit)}
               >
+                
                 {buttonLabel}
               </button>
             </div>

@@ -198,16 +198,20 @@ const country: Template<TemplateRenderProps> = ({
           if (res.slug) {
             let slugString = res.slug ;
             let slug = slugString;
-            detlslug1 = `${slug}.html`;
+            let slugs = res.address;
+            // for long url changes in this line ----
+            detlslug1 =  document.slug + "/" + entity.slug + "/" + res.slug+"/"+`${slug}.html`;
+            console.log(detlslug1,"firstslug")
           } else {
             detlslug1 = `${res.slug.toString()}.html`;
+            // console.log(detlslug1,"secondslug")
           }          
             detlslug = detlslug1;
           })
       }
       else {
         detlslug = slug + "/" + entity.slug + ".html";
-        // console.log(detlslug,"naman145371")
+        console.log(detlslug,"naman145371")
       }
     }
     return (
