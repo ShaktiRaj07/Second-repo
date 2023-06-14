@@ -111,7 +111,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   // return document.id+".html";
 
   return url;
-  
+  console.log(url)
 };
 
 /**
@@ -331,7 +331,7 @@ const Location: Template<ExternalApiRenderData> = ({
     }
   }
   document.dm_directoryParents &&
-    document.dm_directoryParents.map((i: any, index: any) => {
+    document?.dm_directoryParents?.map((i: any, index: any) => {
       console.log(i,"gfdsg")
       if (i.meta.entityType.id == "ce_country") {
         document.dm_directoryParents[index].name =
@@ -378,7 +378,7 @@ const Location: Template<ExternalApiRenderData> = ({
         });
       } else if (i.meta.entityType.id == "ce_city") {
         let url = "";
-        document.dm_directoryParents.map((j: any) => {
+        document?.dm_directoryParents?.map((j: any) => {
           console.log(j,"SAF")
           if (
             j.meta.entityType.id != "ce_city" &&
@@ -413,7 +413,7 @@ const Location: Template<ExternalApiRenderData> = ({
     },
   });
   let imageurl = photoGallery
-    ? photoGallery.map((element: any) => {
+    ? photoGallery?.map((element: any) => {
       console.log(element,"element")
       return element.image.url;
     })
@@ -535,7 +535,7 @@ const Location: Template<ExternalApiRenderData> = ({
 
             <div className="containerr">
               <h1 className="head">Our Gallery</h1>
-              {c_geniousGallery?.images.map((item: any) => {
+              {c_geniousGallery?.images?.map((item: any) => {
                 console.log(item,"sfkld")
                 return (
                   <>
