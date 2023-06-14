@@ -126,7 +126,7 @@ const SearchLayout = (props: any): JSX.Element => {
               }
             },
             (error: any) => {
-              console.error(error);
+              // console.error(error);
               setCheck(false);
             }
           );
@@ -158,7 +158,7 @@ const SearchLayout = (props: any): JSX.Element => {
     if (searchKey[0].value != "") {
       getCoordinates(Search);
     }
-    console.log(locationinbuit.length, "fisttimedispaly");
+    // console.log(locationinbuit.length, "fisttimedispaly");
     if (locationinbuit.length == 0) {
       setDisplaymsg(true);
     } else {
@@ -170,7 +170,7 @@ const SearchLayout = (props: any): JSX.Element => {
     setInputValue("");
   };
   const handleSetUserShareLocation = (value: any, userShareStatus: boolean) => {
-    console.log(value, center_latitude, center_longitude, "value");
+    // console.log(value, center_latitude, center_longitude, "value");
     setInputValue(value);
     if (userShareStatus) {
       setCenterLatitude(center_latitude);

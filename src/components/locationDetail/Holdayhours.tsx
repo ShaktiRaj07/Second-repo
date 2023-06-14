@@ -4,7 +4,7 @@ const Holidayhours = (props: any) => {
   return (
     <>
       {props.hours.map((res: any, index: Number) => {
-        console.log(res.isClosed);
+        // console.log(res.isClosed);
         const weeks = [
           "Sunday",
           "Monday",

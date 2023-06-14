@@ -7,7 +7,7 @@ import {
 } from "../../hooks/useComposedCssClasses";
 
 interface ResultsCountCssClasses {
-  container?: string;
+  container?: string; 
   text?: string;
   number?: string;
 }

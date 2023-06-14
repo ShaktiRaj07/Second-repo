@@ -10,25 +10,7 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import { SearchHeadlessProvider } from "@yext/search-headless-react";
-import {
-  FilterSearch,
-  VerticalResults,
-  ResultsCount,
-  AppliedFilters,
-  ApplyFiltersButton,
-  LocationBias,
-  Pagination,
-} from "@yext/search-ui-react";
-import { Location } from "../types/search/locations";
-import MapboxMap from "../components/MapboxMap";
-import MapPin from "../components/MapPin";
-import LocationCard from "../components/locatorPage/LocationCard";
 import PageLayout from "../components/layouts/PageLayout";
-import Geocode from "react-geocode";
-import UseMyLocation from "../components/locatorPage/UseMyLocation";
-import { Address } from "../types/search/locations";
-import { useSearchActions } from "@yext/search-headless-react";
-import { useEffect } from "react";
 import SearchLayout from "../components/locatorPage/SearchLayout";
 import {
   stagingBaseurl,
@@ -36,7 +18,6 @@ import {
   AnalyticsEnableDebugging,
   AnalyticsEnableTrackingCookie,
 } from "../../sites-global/global";
-import Newsletter from "../components/locatorPage/Newsletter";
 import { JsonLd } from "react-schemaorg";
 import { StaticData } from "../../sites-global/staticData";
 import {
@@ -175,7 +156,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           name: "twitter:title",
           content: `${document.c_meta_title
               ? document.c_meta_title
-              : `Timber Merchants Near Me - Find MGM Timber Branch Locator Here.`
+              : `Chai Sutta Bar Near Me - Find CSB Branch Locator Here.`
             }`,
         },
       },

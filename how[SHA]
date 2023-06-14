@@ -15,7 +15,7 @@
 [31m-      if (entity?.dm_baseEntityCount == 1) {[m
 [31m-        newurl = entity.slug;[m
 [31m-        entity.dm_directoryChildren.map((detl: any) => {[m
-[31m-          console.log('detl', detl)[m
+// [31m-          console.log('detl', detl)[m
 [31m-          var string: any = detl.id.toString();          [m
 [31m-          newurl =  `/${string}.html`;         [m
 [31m-        })        [m

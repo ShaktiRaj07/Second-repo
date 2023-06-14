@@ -1,16 +1,8 @@
 import * as React from "react";
-import Banner from "../components/locationDetail/banner";
-import Cta from "../components/commons/cta";
 import Contact from "../components/locationDetail/contact";
-import ApiCall from "../Apis/ApiCall";
 import Nearby from "../components/locationDetail/Nearby";
-import { CustomFieldDebuggerReactProvider } from "@yext/custom-field-debugger";
 import { JsonLd } from "react-schemaorg";
-import Opening from "../components/commons/openClose";
 import { nearByLocation } from "../types/nearByLocation";
-import Logo from "../images/logo-header.svg";
-import offerBanner from "../images/offer-banner.jpg";
-import IframeMap from "../components/locationDetail/IframeMap";
 import "../index.css";
 import {
   Template,
@@ -25,20 +17,11 @@ import {
 } from "@yext/pages";
 import PageLayout from "../components/layouts/PageLayout";
 import { fetch } from "@yext/pages/util";
-import Nav from "../components/layouts/Nav";
-import Footer from "../components/layouts/footer";
-import Menu from "../components/locationDetail/Menu";
-import PhotoSlider from "../components/locationDetail/PhotoSlider";
-import PhotoGallery from "../components/locationDetail/PhotoGallery";
 import About from "../components/locationDetail/About";
-import Breadcrumb from "../components/layouts/Breadcrumb";
 import CustomMap from "../components/locationDetail/CustomMap";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
-import StoreHighlight from "../components/locationDetail/SoreHighlight";
 import OpenClose from "../components/commons/openClose";
-// import Faq from "../components/locationDetail/Faqs";
 import { StaticData } from "../../sites-global/staticData";
-
 import {
   apikey_for_entity,
   baseuRL,
@@ -51,12 +34,11 @@ import {
   AnalyticsProvider,
   AnalyticsScopeProvider,
 } from "@yext/pages/components";
-import FeaturesBrand from "../components/locationDetail/FeaturesBrand";
-import { Fade, Slide } from "react-awesome-reveal";
-import MgmTimber from "../components/locationDetail/MgmTimber";
 import { AnswerExperienceConfig } from "../config/answersHeadlessConfig";
 import Mystore from "../components/locationDetail/MyStore";
 import Faq from "../components/locationDetail/Faqs";
+import Banner1 from "../components/locationDetail/BannerNew";
+import NewService from "../components/locationDetail/NewService";
 
 /**
  * Required when Knowledge Graph data is used for a template.
@@ -109,9 +91,9 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   var url = "";
   var name: any = document.id.toLowerCase();
-  var string: any = name.toString();;
+  var string: any = name.toString();
   let result: any = string.replaceAll(" ", "-");
-  document?.dm_directoryParents?.map((result: any, i: Number) => {
+  document?.dm_directoryParents?.map((result: any, i: number) => {
     if (i > 0) {
       url += result.slug + "/"
     }
@@ -160,7 +142,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           name: "description",
           content: `${document.c_meta_description
             ? document.c_meta_description
-            : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
+            : `Find the ${document.name}  Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
             }`,
         },
       },
@@ -197,7 +179,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           property: "og:description",
           content: `${document.c_meta_description
             ? document.c_meta_description
-            : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
+            : `Find the ${document.name}  Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
             }`,
         },
       },
@@ -244,7 +226,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
           name: "twitter:description",
           content: `${document.c_meta_description
             ? document.c_meta_description
-            : `Find the ${document.name} Timber Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
+            : `Find the ${document.name}  Store in ${document.address.city}. We stock high-quality, robust products at competitive rates.`
             }`,
         },
       },
@@ -265,7 +247,7 @@ export const transformProps: TransformProps<ExternalApiData> = async (
     }`;
 
   const url = `${AnswerExperienceConfig.endpoints.verticalSearch}?experienceKey=${AnswerExperienceConfig.experienceKey}&api_key=${AnswerExperienceConfig.apiKey}&v=20220511&version=${AnswerExperienceConfig.experienceVersion}&locale=${AnswerExperienceConfig.locale}&location=${location}&verticalKey=${AnswerExperienceConfig.verticalKey}&limit=4&retrieveFacets=true&skipSpellCheck=false&sessionTrackingEnabled=true&source=STANDARD`;
-  console.log(url);
+  // console.log('url',url);
   const externalApiData = (await fetch(url).then((res: any) =>
     res.json()
   )) as nearByLocation;
@@ -369,7 +351,7 @@ const Location: Template<ExternalApiRenderData> = ({
             j.meta.entityType.id != "ce_city" &&
             j.meta.entityType.id != "ce_root"
           ) {
-            console.log(j, "j");
+            // console.log(j, "j");
             url = url + j.slug;
           }
         });
@@ -393,7 +375,7 @@ const Location: Template<ExternalApiRenderData> = ({
             j.meta.entityType.id != "ce_city" &&
             j.meta.entityType.id != "ce_root"
           ) {
-            console.log(j, "j");
+            // console.log(j, "j");
             url = url + "/" + j.slug;
           }
         });
@@ -426,7 +408,7 @@ const Location: Template<ExternalApiRenderData> = ({
       return element.image.url;
     })
     : null;
-  console.log(document);
+  // console.log(document);
   let bannerimage = c_banner_image && c_banner_image.image.url;
 
   return (
@@ -460,7 +442,7 @@ const Location: Template<ExternalApiRenderData> = ({
           itemListElement: breadcrumbScheme,
         }}
       />
-      
+
       <AnalyticsProvider
         templateData={templateData}
         enableDebugging={AnalyticsEnableDebugging}
@@ -537,7 +519,9 @@ const Location: Template<ExternalApiRenderData> = ({
             </div>
             {/* Create new section  */}
 
-            <About props={c_my_field} />
+            {/* <About props={c_my_field} /> */}
+
+            <NewService />
 
             <div className="containerr">
               <h1 className="head">Our Gallery</h1>
@@ -552,139 +536,105 @@ const Location: Template<ExternalApiRenderData> = ({
               })}
             </div>
 
-            <div className="containerrr">
-              <h1>Our Services</h1>
+            <Banner1 />
+
+            {/* <div className="containerrr">
+              <h1>Our Menu Item's</h1>
               <div className="row">
                 <div className="service">
-                  <i className="npm install @fortawesome/free-solid-svg-icons"></i>
-                  <h2>Web Design</h2>
+                  <h2>Kesar Chai</h2>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
                     quae?
                   </p>
                 </div>
                 <div className="service">
-                  <i className="fas fa-chart-line"></i>
-                  <h2>Marketing</h2>
+                  <h2>Rose Chai</h2>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
                     quae?
                   </p>
                 </div>
                 <div className="service">
-                  <i className="fab fa-sketch"></i>
-                  <h2>Graphics</h2>
+                  <h2>Ginger Chai</h2>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
                     quae?
                   </p>
                 </div>
                 <div className="service">
-                  <i className="fas fa-database"></i>
-                  <h2>Data Analysis</h2>
+                  <h2>Pan Chai</h2>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
                     quae?
                   </p>
                 </div>
                 <div className="service">
-                  <i className="fas fa-mobile-alt"></i>
-                  <h2>App Development</h2>
+                  <h2>Kuhllad Coffee</h2>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
                     quae?
                   </p>
                 </div>
                 <div className="service">
-                  <i className="fas fa-file-invoice"></i>
-                  <h2>Accounting</h2>
+                  <h2>Chochlate Chai</h2>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
                     quae?
                   </p>
                 </div>
                 <div className="service">
-                  <i className="fas fa-money-check-alt"></i>
-                  <h2>Payroll</h2>
+                  <h2>Hot/Cold Coffee</h2>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
                     quae?
                   </p>
                 </div>
                 <div className="service">
-                  <i className="fas fa-network-wired"></i>
-                  <h2>Networking</h2>
+                  <h2>Sandwich</h2>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
                     quae?
                   </p>
                 </div>
                 <div className="service">
-                  <i className="fas fa-laptop-code"></i>
-                  <h2>Web Development</h2>
+                  <h2>Pen Pizza</h2>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
                     quae?
                   </p>
                 </div>
               </div>
-            </div>
-
+            </div> */}
             {/* new section start */}
-            <div className="heading1">Our Owner's</div>
+            
+            {/* <div className="heading1">{c_ownersection.heading}</div>
             <div className="Section5">
               <div className="box">
-                <div className="card">
-                  <div className="imgBx">
-                    <img
-                      src="https://1.bp.blogspot.com/-ZJx9AmmzfTY/YM5FZG0CkZI/AAAAAAAAAyg/Gxq7fMYY4Hcgt2U-u-cRLlxVVuT83WZXgCLcBGAsYHQ/s2048/IMG_1942%2Bcopy.jpg"
-                      alt="images"
-                    />
-                  </div>
-                  <div className="details">
-                    <h2>
-                      Anubhav Dubey
-                      <br />
-                      <span>Owner</span>
-                    </h2>
-                  </div>
-                </div>
-
-                <div className="card">
-                  <div className="imgBx">
-                    <img
-                      src="https://akm-img-a-in.tosshub.com/businesstoday/images/story/202209/fbeyuh9veaa1yqk_1-sixteen_nine.jpg?size=948:533"
-                      alt="images"
-                    />
-                  </div>
-                  <div className="details">
-                    <h2>
-                      Abhinav, Anand
-                      <br />
-                      <span>CEO & Founder</span>
-                    </h2>
-                  </div>
-                </div>
-
-                <div className="card">
-                  <div className="imgBx">
-                    <img
-                      src="https://pbs.twimg.com/media/FLB4j85agAAQhAg?format=jpg&name=large"
-                      alt="images"
-                    />
-                  </div>
-                  <div className="details">
-                    <h2>
-                      Anand Nayak
-                      <br />
-                      <span>Co-Founder</span>
-                    </h2>
-                  </div>
-                </div>
+                {c_ownersection?.image.map((item: any) => {
+                  return (
+                    <>
+                      <div className="card">
+                        <div className="imgBx">
+                          <img
+                            src={item.url}
+                            alt="images"
+                          />
+                        </div>
+                        <div className="details">
+                          <h2>
+                            {c_ownersection.name}
+                            <br />
+                            <span>{c_ownersection.designation}</span>
+                          </h2>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })}
               </div>
             </div>
-
-
+             */}
 
             <Faq faqs={c_fAQ} />
 

@@ -36,7 +36,7 @@ const Footer = (props: data) => {
 
             <div
               className="col-xs-6 col-md-3"
-              style={{ float: "right", width: "13%", marginBottom:"1rem" }}
+              style={{ float: "right", width: "13%", marginBottom: "1rem" }}
             >
               <h6>{_site.c_thirdHeading}</h6>
               <ul className="footer-links">
@@ -66,16 +66,16 @@ const Footer = (props: data) => {
             >
               <ul className="social-icons">
                 <li>
-                 
+
                 </li>
                 <li>
-                  
+
                 </li>
                 <li>
-                  
+
                 </li>
                 <li>
-                  
+
                 </li>
               </ul>
             </div>

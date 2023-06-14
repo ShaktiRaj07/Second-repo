@@ -243,7 +243,7 @@ const region: Template<TemplateRenderProps> = ({
         if (typeof entity.dm_directoryChildren != "undefined") {
           if (entity.dm_directoryChildrenCount == 1) {
             entity.dm_directoryChildren.map((res: any) => {
-              console.log(res, "res");
+              // console.log(res, "res");
               let detlslug1 = "";
 
               if (!res.slug) {
@@ -271,7 +271,7 @@ const region: Template<TemplateRenderProps> = ({
       })
     : null;
 
-  let bannerimage = c_banner_image && c_banner_image.image.url;
+  // let bannerimage = c_banner_image && c_banner_image.image.url;
   return (
     <>
       <PageLayout global={_site}>

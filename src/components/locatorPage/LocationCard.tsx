@@ -43,7 +43,9 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
   }
 
   const { address } = result.rawData;
-  console.log('result.rawData', result.rawData)
+  // console.log('result.rawData', result.rawData)
+
+  
   var name: any = result.rawData.id?.toLowerCase();
   var country: any = result.rawData.address.countryCode?.toLowerCase();
   var initialcountry: any = country.toString();
@@ -117,7 +119,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                 <div className="icon ml-[-24px]">
                   <img className=" " src="/src/images/phone.svg" width="22" height="22" alt="phonesvg" />
                 </div>
-                <div className="content-col">
+                <div className="content-col ml-[-24px]" >
                   <a id="address" className=" location-phn" href="tel:+919764315487">+919764315487</a>
                 </div>
               </div>

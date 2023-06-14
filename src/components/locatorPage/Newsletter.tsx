@@ -36,11 +36,11 @@ export default function Newsletter() {
       }
     } catch (err) {
       setStatus("ERROR");
-      console.log(err);
+      // console.log(err);
     }
   };
   function onChange(value) {
-    console.log("Captcha value:", value);
+    // console.log("Captcha value:", value);
   }
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {

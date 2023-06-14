@@ -31,7 +31,7 @@ const SubscribeForm = () => {
       }
     } catch (err) {
       setStatus("ERROR");
-      console.log(err);
+      // console.log(err);
     }
   };
 

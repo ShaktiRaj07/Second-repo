@@ -193,15 +193,15 @@ const country: Template<TemplateRenderProps> = ({
     if (typeof entity.dm_directoryChildren != "undefined") {
       if (entity.dm_baseEntityCount == 1) {
         entity.dm_directoryChildren.map((res: any) => {
-          console.log('res', res)
+          // console.log('res', res)
           let detlslug1 = "";
           if (res.slug) {
             let slugString = res.slug ;
             let slug = slugString;
             let slugs = res.address;
             // for long url changes in this line ----
-            detlslug1 =  document.slug + "/" + entity.slug + "/" + res.slug+"/"+`${slug}.html`;
-            console.log(detlslug1,"firstslug")
+            detlslug1 =  document.slug + "/" + entity.slug + "/" + res.slug + "/" + `${slug}.html`;
+            // console.log(detlslug1,"firstslug")
           } else {
             detlslug1 = `${res.slug.toString()}.html`;
             // console.log(detlslug1,"secondslug")
@@ -211,7 +211,7 @@ const country: Template<TemplateRenderProps> = ({
       }
       else {
         detlslug = slug + "/" + entity.slug + ".html";
-        console.log(detlslug,"naman145371")
+        // console.log(detlslug,"naman145371")
       }
     }
     return (

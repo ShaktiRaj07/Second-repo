@@ -17,7 +17,7 @@ export default function StoreHighlight(props: any) {
 
         <div className="services-inner">
           {props.c_storeHighlightInfo.map((res: any, i: Number) => {
-            console.log(res, "storehighlight");
+            // console.log(res, "storehighlight");
 
             return (
               <>

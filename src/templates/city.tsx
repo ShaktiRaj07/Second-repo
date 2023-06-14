@@ -207,7 +207,7 @@ const City: Template<TemplateRenderProps> = ({
     c_metaTitle,
     _site,
   } = document;
-  console.log('document', document)
+  // console.log('document', document)
   var address;
   var c_companyrn;
   var c_footerLinks;
@@ -229,7 +229,7 @@ const City: Template<TemplateRenderProps> = ({
   });
 
   const childrenDivs = dm_directoryChildren?.map((entity: any) => {
-    // console.log(entity)
+    console.log(entity,"sdfjkaSFJOPslkj fslkf")
     var origin: any = null;
     if (entity.address.city) {
       origin = entity.address.city;
@@ -242,6 +242,9 @@ const City: Template<TemplateRenderProps> = ({
     var url = "";
     var id : any = entity.id;
     var name: any = entity.name.toLowerCase();
+    var country: any = entity.address.countryCode.toLowerCase();
+    var initialcountry: any = country.toString();
+    var finalcountry: any = initialcountry.replaceAll(" ", "-");
     var region: any = entity.address.region.toLowerCase();
     var initialregion: any = region.toString();
     var finalregion: any = initialregion.replaceAll(" ", "-");
@@ -250,12 +253,15 @@ const City: Template<TemplateRenderProps> = ({
     var finalcity: any = initialrcity.replaceAll(" ", "-");
     var string: any = name.toString();;
     let result: any = string.replaceAll(" ", "-");
+
+    const main_url = finalcountry + "/"+finalregion+"/"+finalcity+"/"+entity.id+".html"
+    console.log(main_url,"mainiouwerywh")
     // let newlink: any = 
     if (!entity.slug) {
-      url =  city.toLowerCase() + "/" + `${id}.html`;
-      console.log('citypage', url)
+      url =  `${main_url}`;
+      // console.log('citypage', url)
     } else {
-      url = `${entity.slug.toString()}.html`;
+      url = `${main_url}`;
       
     }
     
@@ -265,7 +271,7 @@ const City: Template<TemplateRenderProps> = ({
         <div className="location-name-miles icon-row">
           {/* <div className="icon"> <img className=" " src={mapimage} width="20" height="20"
                       alt="" /></div> */}
-          <h2><Link className="inline-block notHighlight" href={url}
+          <h2><Link className="inline-block notHighlight" href={main_url}
             data-ya-track={`viewstore-${entity.name}`}
             eventName={`viewstore-${entity.name}`}
             rel="noopener noreferrer"
@@ -302,7 +308,7 @@ const City: Template<TemplateRenderProps> = ({
             hours={entity.hours} />
         </div> */}
         <div className="button-bx">
-          <Link className="btn" href={url}
+          <Link className="btn" href={main_url}
             data-ya-track={`viewstore-${entity.name}`}
             eventName={`viewstore-${entity.name}`}
             rel="noopener noreferrer"
@@ -380,7 +386,7 @@ const City: Template<TemplateRenderProps> = ({
     }
     else if (i.meta.entityType.id == 'ce_region') {
       url = `${url}/${i.slug}/${document.slug.toString()}.html`
-      console.log('urllast wala', url)
+      // console.log('urllast wala', url)
     }
   })
   let breadcrumbScheme: any = [];

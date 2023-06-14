@@ -30,8 +30,8 @@ const Timer = (props: any) => {
     return a.map(format).join(s);
   }
 
-  console.log(weeks[d.getDay()]);
-  console.log(week.props.hours);
+  // console.log(weeks[d.getDay()]);
+  // console.log(week.props.hours);
   for (const key in week.props.hours) {
     if (week.props.hours != "undefined") {
       if (typeof week.props.hours.holidayHours != "undefined") {
@@ -77,7 +77,7 @@ const Timer = (props: any) => {
       now.getUTCMinutes(),
       now.getUTCSeconds()
     );
-    console.log(nowUTC);
+    // console.log(nowUTC);
     const time = Date.parse(deadline) - nowUTC;
 
     setDays(Math.floor(time / (1000 * 60 * 60 * 24)));

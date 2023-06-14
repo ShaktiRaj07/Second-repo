@@ -245,9 +245,9 @@ const region: Template<TemplateRenderProps> = ({
       if (entity?.dm_baseEntityCount == 1) {
         newurl = entity.slug;
         entity.dm_directoryChildren.map((detl: any) => {
-          console.log('detl', detl)
+       
           var string: any = detl.id.toString();          
-          newurl =  `/${string}.html`;
+          newurl =  slug +"/"+ entity.slug +"/"+string+".html";
           console.log('newurl', newurl)           
         })        
         return (
@@ -269,7 +269,7 @@ const region: Template<TemplateRenderProps> = ({
           ".html";
         return (
           <div className="w-1/2 storelocation-category md:w-1/3 lg:w-1/4 px-4 test">
-            <a key={entity.slug} href={slug} className="hover:text-red">
+            <a key={entity.slug} href={newurl} className="hover:text-red">
               {entity.name} ({entity.dm_baseEntityCount})
             </a>
           </div>

@@ -2071,6 +2071,8 @@ table.day-hrs .currentDay {
   cursor: pointer;
   background: transparent;
   transition: transform 0.5s, background 0.5s;
+  border-width: 3px 3px 3px 3px;
+  border-radius: 25px 5px 25px 5px;
 }
 
 .service i {
@@ -2175,4 +2177,157 @@ a#address {
 .meter {
   float: right;
   margin-top: -2rem;
+}
+
+/* banner1 css start  */
+
+.elementor-container.elementor-column-gap-default {
+  background-image: url(https://wpthemes.themehunk.com/food-delivery-mania/wp-content/uploads/sites/233/2022/04/bgpizzas-1.png);
+  background-position: center left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.elementor-section .elementor-container {
+  display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+}
+
+
+.elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-dbdd892 {
+  width: 39.855%;
+}
+
+.elementor-widget-container {
+  margin: 10px 0px 0px 0px;
+}
+
+.elementor-column.elementor-col-50.elementor-inner-column.elementor-element.elementor-element-69f96c3 {
+  width: 60.145%;
+  align-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.elementor-element.elementor-element-80d7ff1.elementor-widget.elementor-widget-heading {
+  text-align: left;
+}
+
+.elementor-widget-container {
+  margin: 10px 0px 0px 0px;
+}
+
+h2.elementor-heading-title.elementor-size-default {
+  color: #F2252C;
+  font-family: "Baumans", Sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 50px;
+}
+.elementor-widget-container {
+  margin: 10px 0px 0px 0px;
+  line-height: 75px;
+}
+
+a.elementor-button-link.elementor-button.elementor-size-lg {
+  font-family: "Baumans", Sans-serif;
+  font-weight: 500;
+  fill: #FFFFFF;
+  color: #FFFFFF;
+  background-color: #61CE7000;
+  border-style: solid;
+  border-width: 3px 3px 3px 3px;
+  border-radius: 5px 25px 5px 25px;
+  font-size: 18px;
+  padding: 20px 40px;
+  text-decoration: none;
+}
+
+a.elementor-button-link.elementor-button.elementor-size-lg:hover {
+  color: #000000;
+  background-color: #fff;
+}
+
+/* .location-phn {
+  margin-left: -1.7rem !important;
+} */
+
+a#address1 {
+  margin-left: 1.8rem;
+  text-decoration: none;
+}
+
+/* service section css start here */
+
+.services-sec {
+  width: 100%;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  padding-top: 3.625rem;
+  padding-bottom: 3.625rem;
+}
+
+.sec-title {
+  margin-bottom: 1.75rem;
+}
+
+.services-list {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.services-list .service-box {
+  margin-bottom: 0;
+  width: 25%;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.services-list .service-inner-box {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+  border-radius: 10px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 243 243 / var(--tw-bg-opacity));
+  padding: 1.25rem 1.5rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.services-list .service-inner-box .icon {
+  margin-right: 0.625rem;
+  height: 60px;
+  width: 60px;
+  background-color: #ffffff;
+  border-radius: 5rem;
+  background-position: center;
+  padding-left: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.services-list .service-inner-box .icon img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+  -o-object-position: center;
+  object-position: center;
+}
+
+.services-list .service-inner-box a {
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: calc(100% - 70px);
+  font-weight: 600;
+}
+
+.services-list .service-inner-box a:hover{
+  --tw-text-opacity: 1;
+  color: rgb(211 26 33 / var(--tw-text-opacity));
 }

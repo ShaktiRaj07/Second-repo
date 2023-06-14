@@ -52,9 +52,9 @@ export default function Nearby(props: any) {
       {neabyData.map((location: any, index: Number) => {
         let url = "";
         var name: any = location.data.name?.toLowerCase();
-        var country : any = location.data.address.countryCode?.toLowerCase();
-        var initialcountry : any = country.toString();
-        var finalcountry : any = initialcountry.replaceAll(" ", "-");        
+        var country: any = location.data.address.countryCode?.toLowerCase();
+        var initialcountry: any = country.toString();
+        var finalcountry: any = initialcountry.replaceAll(" ", "-");
         var region: any = location.data.address.region?.toLowerCase();
         var initialregion: any = region.toString();
         var finalregion: any = initialregion.replaceAll(" ", "-");
@@ -64,7 +64,7 @@ export default function Nearby(props: any) {
         var string: any = name.toString();
         let result1: any = string.replaceAll(" ", "-");
 
-        let newURl= finalcountry + "/" + finalregion + "/" + finalcity + "/" + result1 + ".html";
+        let newURl = finalcountry + "/" + finalregion + "/" + finalcity + "/" + result1 + ".html";
         if (!location.data.slug) {
           url = `${newURl}`;
         } else {
@@ -89,14 +89,20 @@ export default function Nearby(props: any) {
                     </Link>
                   </h2>
                 </div>
-                <div className="meter">    
-                    {metersToMiles(location.distance)} <span>{StaticData.miles}</span>
-                  </div>
-                <div className="icon-row content-col">
-                
-                  <Address address={location.data.address} />
-                  
+                <div className="meter">
+                  {metersToMiles(location.distance)} <span>{StaticData.miles}</span>
                 </div>
+                <div className="icon-row content-col">
+                  <Address address={location.data.address} />
+                </div>
+                <div className="icon-row">
+                    <div className="icon">
+                      <img className=" " src="/src/images/phone.svg" width="22" height="22" alt="phonesvg" />
+                    </div>
+                    <div className="content-col">
+                      <a id="address1" className=" location-phn" href="tel:+919764315487">+919764315487</a>
+                    </div>
+                  </div>
                 <div className="icon-row closeing-div">
                   {location.data.hours ? (
                     <div
@@ -123,7 +129,7 @@ export default function Nearby(props: any) {
                           cx="4"
                           cy="4"
                           r="4"
-                          fill="#ad1e1f"
+                          fill="#000000"
                         />
                       </svg>
                       <div className="hours-info text-lg font-second-main-font closeddot">
