@@ -89,17 +89,21 @@ export const config: TemplateConfig = {
  * take on the form: featureName/entityId
  */
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
+  console.log('document', document)
   var url = "";
   var name: any = document.id.toLowerCase();
   var string: any = name.toString();
   let result: any = string.replaceAll(" ", "-");
   document?.dm_directoryParents?.map((result: any, i: number) => {
+    
+    
     if (i > 0) {
       url += result.slug + "/"
     }
   })
   if (!document.slug) {
     url += `${result}.html`;
+   
   } else {
     url += `${document.slug.toString()}.html`;
   }
@@ -107,7 +111,9 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   // return document.id+".html";
 
   return url;
+  
 };
+
 /**
  * Defines a list of paths which will redirect to the path created by getPath.
  *
@@ -326,6 +332,7 @@ const Location: Template<ExternalApiRenderData> = ({
   }
   document.dm_directoryParents &&
     document.dm_directoryParents.map((i: any, index: any) => {
+      console.log(i,"gfdsg")
       if (i.meta.entityType.id == "ce_country") {
         document.dm_directoryParents[index].name =
           document.dm_directoryParents[index].name;
@@ -346,6 +353,7 @@ const Location: Template<ExternalApiRenderData> = ({
       } else if (i.meta.entityType.id == "ce_region") {
         let url = "";
         document.dm_directoryParents.map((j: any) => {
+          console.log(j,"sdfd")
           if (
             j.meta.entityType.id != "ce_region" &&
             j.meta.entityType.id != "ce_city" &&
@@ -371,6 +379,7 @@ const Location: Template<ExternalApiRenderData> = ({
       } else if (i.meta.entityType.id == "ce_city") {
         let url = "";
         document.dm_directoryParents.map((j: any) => {
+          console.log(j,"SAF")
           if (
             j.meta.entityType.id != "ce_city" &&
             j.meta.entityType.id != "ce_root"
@@ -405,11 +414,12 @@ const Location: Template<ExternalApiRenderData> = ({
   });
   let imageurl = photoGallery
     ? photoGallery.map((element: any) => {
+      console.log(element,"element")
       return element.image.url;
     })
     : null;
-  // console.log(document);
-  let bannerimage = c_banner_image && c_banner_image.image.url;
+
+
 
   return (
     <>
@@ -526,6 +536,7 @@ const Location: Template<ExternalApiRenderData> = ({
             <div className="containerr">
               <h1 className="head">Our Gallery</h1>
               {c_geniousGallery?.images.map((item: any) => {
+                console.log(item,"sfkld")
                 return (
                   <>
                     <div className="effect11">

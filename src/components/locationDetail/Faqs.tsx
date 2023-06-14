@@ -24,6 +24,7 @@ export default function Faq(faqdata: any) {
 
           {
             faqdata.faqs.map((value: any, index: any) => {
+              console.log(value,"dfdfdsgds")
               return (
 
 
