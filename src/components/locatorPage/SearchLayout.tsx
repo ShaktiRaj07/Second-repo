@@ -209,7 +209,7 @@ const SearchLayout = (props: any): JSX.Element => {
   }, [locationinbuit]);
   useEffect(() => {
     console.log("yes rerender");
-    locationResults.map((result: any, index: number) => {
+    locationResults?.map((result: any, index: number) => {
       const resultelement = document.querySelectorAll(
         `.result-list-inner-${index + 1}`
       );
