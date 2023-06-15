@@ -9,4 +9,4 @@ sites-config/features.json
 notes.txt 
 .env
 .DS_Store
-mylogs.log
+*mylogs.log

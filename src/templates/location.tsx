@@ -352,7 +352,7 @@ const Location: Template<ExternalApiRenderData> = ({
         });
       } else if (i.meta.entityType.id == "ce_region") {
         let url = "";
-        document.dm_directoryParents.map((j: any) => {
+        document.dm_directoryParents?.map((j: any) => {
           console.log(j,"sdfd")
           if (
             j.meta.entityType.id != "ce_region" &&
