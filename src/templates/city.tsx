@@ -256,7 +256,7 @@ const City: Template<TemplateRenderProps> = ({
 
     const main_url = finalcountry + "/"+finalregion+"/"+finalcity+"/"+entity.id+".html"
     console.log(main_url,"mainiouwerywh")
-    // let newlink: any = 
+    // let newlink: any =    
     if (!entity.slug) {
       url =  `${main_url}`;
       // console.log('citypage', url)
